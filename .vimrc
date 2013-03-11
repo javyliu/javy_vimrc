@@ -17,10 +17,11 @@ Bundle 'gmarik/vundle'
 Bundle 'Align'
 Bundle 'tpope/vim-rails'
 Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
+Bundle 'tpope/vim-surround'
 "Bundle 'bbommarito/vim-slim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
@@ -41,7 +42,7 @@ set wildmenu
 "关闭响铃，闪屏
 set vb t_vb=
 "显示行号
-set nu
+"set nu
 "马上跳到搜索匹配
 set incsearch
 
@@ -50,7 +51,7 @@ filetype plugin indent on
 set autoindent
 
 "打开鼠标功能
-set mouse=a
+"set mouse=a
 
 "指标符宽度
 set tabstop=4
