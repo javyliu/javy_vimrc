@@ -4,6 +4,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+let mapleader = ";"
 nmap <space> :
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -54,13 +55,16 @@ set autoindent
 "set mouse=a
 
 "指标符宽度
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set sw=2
 set expandtab
 set smarttab
 
+set showcmd             " display incomplete commands
 set ambiwidth=double
-
+set ruler
+"set hls
 " Display extra whitespace
 "set list listchars=tab:»·,trail:·
 
@@ -88,6 +92,13 @@ nmap <Up> <c-w>k
 nmap <Down> <c-w>j
 nmap <Right> <c-w>l
 nmap <Left> <c-w>h
+
+inoremap <c-l> <right>
+inoremap <c-h> <left>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+map Y y$
+vmap // y/<c-r>"<cr>
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
