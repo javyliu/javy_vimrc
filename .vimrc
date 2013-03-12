@@ -46,6 +46,7 @@ set vb t_vb=
 "set nu
 "马上跳到搜索匹配
 set incsearch
+set hls
 
 "根据文件格式载入插件和缩进
 filetype plugin indent on
