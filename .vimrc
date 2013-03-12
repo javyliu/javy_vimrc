@@ -21,6 +21,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'vim-scripts/ZenCoding.vim'
 Bundle 'The-NERD-Commenter'
 "Bundle 'Valloric/YouCompleteMe'
+"git.vim
+Bundle 'motemen/git-vim'
 
 Bundle 'msanders/snipmate.vim'
 "Bundle 'scrooloose/nerdtree'
@@ -102,8 +104,9 @@ nmap <Left> <c-w>h
 
 inoremap <c-l> <right>
 inoremap <c-h> <left>
-inoremap <c-j> <down>
-inoremap <c-k> <up>
+"inoremap <c-j> <down>
+"inoremap <c-k> <up>
+inoremap <c-j> <esc>o
 map Y y$
 vmap // y/<c-r>"<cr>
 
