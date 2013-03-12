@@ -17,6 +17,11 @@ Bundle 'gmarik/vundle'
 
 Bundle 'Align'
 Bundle 'tpope/vim-rails'
+
+Bundle 'vim-scripts/ZenCoding.vim'
+Bundle 'The-NERD-Commenter'
+"Bundle 'Valloric/YouCompleteMe'
+
 Bundle 'msanders/snipmate.vim'
 "Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
@@ -34,6 +39,7 @@ set nobackup
 set nowritebackup
 
 
+set tags=tags,gem_tags
 
 "语法高亮
 syntax on
@@ -79,11 +85,11 @@ autocmd FileType coffee set tabstop=2 shiftwidth=2
 au! BufRead,BufNewFile *.json setfiletype json
 
 fun! StripTrailingWhitespace()
-    " Don't strip on these filetypes
-    if &ft =~ 'markdown'
-        return
-    endif
-    %s/\s\+$//e
+  " Don't strip on these filetypes
+  if &ft =~ 'markdown'
+    return
+  endif
+  %s/\s\+$//e
 endfun
 
 autocmd BufWritePre * call StripTrailingWhitespace()
