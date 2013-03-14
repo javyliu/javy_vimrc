@@ -21,3 +21,7 @@
     cp = cherry-pick -x
     nb = checkout -b
     ll = log --graph --decorate=full
+  ;mkdir ~/certs
+  ;curl http://curl.haxx.se/ca/cacert.pem -o ~/certs/cacert.pem
+;[http]
+   ;sslCAinfo = /home/radium/certs/cacert.pem
