@@ -45,6 +45,10 @@ set nowritebackup
 
 set tags=tags,gem_tags
 
+"keyword
+set dictionary+=/usr/share/dict/words
+set isk+=-
+
 "语法高亮
 syntax on
 
