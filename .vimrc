@@ -23,6 +23,8 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'Valloric/YouCompleteMe'
 "git.vim
 Bundle 'motemen/git-vim'
+"ack
+Bundle 'mileszs/ack.vim'
 
 Bundle 'msanders/snipmate.vim'
 "Bundle 'scrooloose/nerdtree'
