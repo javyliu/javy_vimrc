@@ -108,6 +108,7 @@ nmap <Down> <c-w>j
 nmap <Right> <c-w>l
 nmap <Left> <c-w>h
 
+
 inoremap <c-l> <right>
 inoremap <c-h> <left>
 "inoremap <c-j> <down>
@@ -126,6 +127,7 @@ nmap <F4> :q<cr>
 nmap <F6> :cp<cr>
 nmap <F7> :cn<cr>
 nmap <F11> gg=G<C-o>
+nnoremap <leader>gf :e <cfile><cr>
 
 " syntastic
 let g:syntastic_check_on_open = 1
