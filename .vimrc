@@ -35,8 +35,9 @@ Bundle 'tpope/vim-surround'
 "Bundle 'bbommarito/vim-slim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
+"代码格式化插件；
+Bundle 'jsbeautify'
 
-" 字体
 set guifont=monaco\ 10
 
 set nobackup
@@ -136,7 +137,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_enable_highlighting = 0
-let g:syntastic_mode_map = { 'passive_filetypes': ['scss', 'slim','javascript'] }
+let g:syntastic_mode_map = { 'passive_filetypes': ['html','scss', 'slim','javascript'] }
 
 "CtrlP
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
