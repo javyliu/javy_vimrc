@@ -38,6 +38,8 @@ Bundle 'scrooloose/syntastic'
 "代码格式化插件；
 Bundle 'jsbeautify'
 Bundle "pangloss/vim-javascript"
+"字典
+Bundle 'asins/vim-dict'
 
 set guifont=monaco\ 10
 
@@ -48,7 +50,10 @@ set nowritebackup
 set tags=tags,gem_tags
 
 "keyword
-set dictionary+=/usr/share/dict/words
+"set dictionary+=/usr/share/dict/words
+autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/javascript.dic
+autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/node.dic
+autocmd filetype css set dictionary+=$HOME/.vim/bundle/vim-dict/dict/css.dic
 set isk+=-
 
 "语法高亮
