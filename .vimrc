@@ -37,6 +37,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 "代码格式化插件；
 Bundle 'jsbeautify'
+Bundle "pangloss/vim-javascript"
 
 set guifont=monaco\ 10
 
@@ -121,6 +122,11 @@ vmap // y/<c-r>"<cr>
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+
+" 打开javascript折叠
+"let b:javascript_fold=1
+" " 打开javascript对dom、html和css的支持
+"let javascript_enable_domhtmlcss=1
 
 nmap <F2> :w<cr>
 nmap <F3> :wa<cr>
