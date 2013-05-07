@@ -38,6 +38,7 @@ Bundle 'scrooloose/syntastic'
 "代码格式化插件；
 Bundle 'jsbeautify'
 Bundle "pangloss/vim-javascript"
+Bundle "othree/javascript-libraries-syntax.vim"
 "字典
 Bundle 'asins/vim-dict'
 
@@ -53,6 +54,7 @@ set tags=tags,gem_tags
 "set dictionary+=/usr/share/dict/words
 autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/javascript.dic
 autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/node.dic
+autocmd filetype javascript set dictionary+=$HOME/javy_vimrc/angularjs.dic
 autocmd filetype css set dictionary+=$HOME/.vim/bundle/vim-dict/dict/css.dic
 set isk+=-
 
