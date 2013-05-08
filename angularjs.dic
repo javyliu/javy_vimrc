@@ -1,3 +1,7 @@
+scope
+angular
+transclude
+template
 bind
 bootstrap
 copy

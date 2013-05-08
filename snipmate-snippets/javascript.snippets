@@ -72,3 +72,51 @@ snippet get
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+
+#for angularjs
+snippet {
+	{{${1:}}}
+
+snippet amod
+	angular.module('${1:moduleName}', [${2:}])${3:}
+#create a directive
+snippet adir
+	directive('${1:directiveName}', [function(){
+		return {
+	    ${2:}
+		};
+	}]);
+#create a module and add directive
+snippet adirmod
+	angular.module('${1:moduleName}', []).
+	directive('$1', [function(){
+			return {
+				${2:}
+			};
+	}]);
+#create a link function in directive
+snippet afnlink
+	link: function(scope, element, attrs) {
+		${1:}
+	}${2:}
+#create a anomyous function
+snippet fn
+	function(${1:}) {
+		${3:}
+	}${2:;}
+#crate a controller?
+snippet actrl
+	controller('${1:controllerName}', ['$scope', function($scope) {
+			${2:}
+	}]);
+#print log
+snippet log
+	console.log(${1:'foo'});
+
+snippet logg
+	console.log('$1', ${1:foo});
+
+snippet beforeEach
+	beforeEach(function(){
+		${1:}
+	});

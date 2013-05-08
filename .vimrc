@@ -56,6 +56,7 @@ autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/java
 autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/node.dic
 autocmd filetype javascript set dictionary+=$HOME/javy_vimrc/angularjs.dic
 autocmd filetype css set dictionary+=$HOME/.vim/bundle/vim-dict/dict/css.dic
+autocmd filetype html set dictionary+=$HOME/javy_vimrc/angular_html.dic
 set isk+=-
 
 "语法高亮
