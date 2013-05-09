@@ -1,7 +1,10 @@
 scope
 angular
+compile
 transclude
 template
+templateUrl
+restrict
 bind
 bootstrap
 copy

@@ -65,17 +65,22 @@ snippet :f
 	}${3:,}
 # setTimeout function
 snippet timeout
-	setTimeout(function() {${3}}${2}, ${1:10};
+	setTimeout(function() {${3}}${2}, ${1:10}};
 # Get Elements
 snippet get
 	getElementsBy${1:TagName}('${2}')${3}
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+#method
+snippet met
+	${1:method_name}: function(${2:attribute}){
+		${4}
+	}${3:, }
 
 #for angularjs
 snippet {
-	{{${1:}}}
+	{{${1:}}}${2}
 
 snippet amod
 	angular.module('${1:moduleName}', [${2:}])${3:}
@@ -88,10 +93,10 @@ snippet adir
 	}]);
 #create a module and add directive
 snippet adirmod
-	angular.module('${1:moduleName}', []).
+	angular.module('${1:moduleName}', [${2}]).
 	directive('$1', [function(){
 			return {
-				${2:}
+				${3:}
 			};
 	}]);
 #create a link function in directive
