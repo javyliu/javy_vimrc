@@ -1,3 +1,3 @@
-<% form_tag(<+:action => "<+update+>"+><+, {:<+class+> => "<+form+>"}+>) do -%>
-  <++>
-<% end -%>
+<%= form_tag(${1:path},:method=>${2:post},:remote=>${3:false}) do %>
+	${4}
+<% end %>

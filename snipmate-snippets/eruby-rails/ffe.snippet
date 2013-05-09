@@ -1,5 +1,12 @@
-<% error_messages_for :${1:model} -%>
-
-<% form_for @${2:model} do |f| -%>
-	${3}
-<% end -%>
+<%=form_for @${1:model} do |f| %>
+	<% if @$1.errors.any? %>
+		<div class="form_errors">
+			<ul>
+			<% @$1.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+	${2}
+<% end %>${3}
