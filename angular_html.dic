@@ -1,12 +1,12 @@
 ng-app
+ng-bind
 ng-bind-html-unsafe
 ng-bind-template
-ng-bind
 ng-change
 ng-checked
+ng-class
 ng-class-even
 ng-class-odd
-ng-class
 ng-click
 ng-cloak
 ng-controller
