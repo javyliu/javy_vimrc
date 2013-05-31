@@ -42,6 +42,8 @@ Bundle "pangloss/vim-javascript"
 Bundle "othree/javascript-libraries-syntax.vim"
 "字典
 Bundle 'asins/vim-dict'
+"easy motion
+Bundle 'Lokaltog/vim-easymotion'
 
 set guifont=monaco\ 10
 
