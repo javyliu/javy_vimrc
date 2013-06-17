@@ -15,7 +15,7 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 
-Bundle 'Align'
+"Bundle 'Align'
 Bundle 'tpope/vim-rails'
 
 Bundle 'mattn/zencoding-vim.git'
@@ -25,13 +25,13 @@ Bundle 'The-NERD-Commenter'
 "git.vim
 Bundle 'motemen/git-vim'
 "ack
-Bundle 'mileszs/ack.vim'
+"Bundle 'mileszs/ack.vim'
 
 Bundle 'msanders/snipmate.vim'
 "Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'hallison/vim-markdown'
-Bundle 'groenewege/vim-less'
+"Bundle 'hallison/vim-markdown'
+"Bundle 'groenewege/vim-less'
 Bundle 'tpope/vim-surround'
 "Bundle 'bbommarito/vim-slim'
 Bundle 'kien/ctrlp.vim'
