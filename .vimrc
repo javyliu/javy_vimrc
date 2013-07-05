@@ -103,8 +103,8 @@ autocmd FileType ruby,rdoc set tabstop=2 shiftwidth=2
 autocmd FileType html set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType coffee set tabstop=2 shiftwidth=2
-au! BufRead,BufNewFile *.json setfiletype json
-au! BufRead,BufNewFile *.erb setfiletype html.erb
+autocmd! filetypedetect BufRead,BufNewFile *.json setf json
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.html.erb setf eruby.html
 
 fun! StripTrailingWhitespace()
   " Don't strip on these filetypes
@@ -194,3 +194,5 @@ nmap <A-right> :ll<cr>
 if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
   set clipboard=autoselect,exclude:.*
 endif
+
+
