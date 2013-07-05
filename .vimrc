@@ -104,6 +104,7 @@ autocmd FileType html set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType coffee set tabstop=2 shiftwidth=2
 au! BufRead,BufNewFile *.json setfiletype json
+au! BufRead,BufNewFile *.erb setfiletype html.erb
 
 fun! StripTrailingWhitespace()
   " Don't strip on these filetypes
@@ -169,3 +170,27 @@ let g:ctrlp_follow_symlinks=1
 nmap <A-up> :lprev<cr>
 nmap <A-down> :lnext<cr>
 nmap <A-right> :ll<cr>
+
+
+" Prevent vim from trying to connect to the X server when connecting
+"
+" " from home, which causes a startup delay of about 14 seconds. I
+"
+" " usually connect from home via screen.
+"
+"
+"set clipboard=autoselect,exclude:cons\\\|linux\\\|screen
+"
+" "
+"
+" " Using $DISPLAY instead of &#39term' should be more reliable. It avoids
+"
+" " the problem of starting vim without first starting screen and allows
+"
+" " screen to be used locally without losing vim&#39s X features.
+"
+" "
+"
+if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
+  set clipboard=autoselect,exclude:.*
+endif
