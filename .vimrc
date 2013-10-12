@@ -9,6 +9,14 @@ nmap <space> :
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+" source .vimrc
+nmap <leader>s :source $HOME/.vimrc<cr>
+nmap <leader>e :sp $HOME/.vimrc<cr>
+" round by <%=%>
+vmap <leader>r di<% <C-R>" %><esc>
+vmap <leader>re di<%= <C-R>" %><esc>
+
+
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
