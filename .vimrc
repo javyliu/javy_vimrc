@@ -16,6 +16,7 @@ nmap <leader>e :sp $HOME/.vimrc<cr>
 vmap <leader>r di<% <C-R>" %><esc>
 vmap <leader>re di<%= <C-R>" %><esc>
 
+nmap <leader>b :ls<cr>:e #
 
 " let Vundle manage Vundle
 " required!
