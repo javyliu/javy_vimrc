@@ -27,8 +27,10 @@ Bundle 'gmarik/vundle'
 "Bundle 'Align'
 Bundle 'tpope/vim-rails'
 
-Bundle 'mattn/zencoding-vim.git'
+"Bundle 'mattn/zencoding-vim.git'
 "Bundle 'vim-scripts/ZenCoding.vim'
+Bundle "mattn/emmet-vim"
+
 Bundle 'The-NERD-Commenter'
 "Bundle 'Valloric/YouCompleteMe'
 "git.vim
