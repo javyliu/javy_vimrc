@@ -4,6 +4,7 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 cp .vimrc .gvimrc ~/
 vim +BundleInstall +qa
 cp .gitconfig ~/
+cp .ctags ~/
 
 # snipmate-snippets
 #git submodule init; git submodule update
