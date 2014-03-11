@@ -1,0 +1,97 @@
+#!/bin/sh
+#
+# chkconfig: - 69 88
+# description: this script is used for nginx
+# author: 
+#
+#!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+# Check if user is root
+if [ $(id -u) != "0" ]; then
+   echo "Error: You must be root to run this script!\n"
+   exit 1
+fi
+
+NGINXDAEMON=/data/nginx/sbin/nginx
+PIDFILE=/data/nginx/logs/nginx.pid
+
+function_start()
+{
+    echo -en "\033[32;49;1mStarting nginx......\n"
+    echo -en "\033[39;49;0m"  
+    if [ -f $PIDFILE ]; then
+      printf "Nginx is runing!\n"
+      exit 1
+    else
+        $NGINXDAEMON
+        printf "Nginx is the successful start!\n"
+    fi
+}
+
+function_stop()
+{
+    echo -en "\033[32;49;1mStoping nginx......\n"
+    echo -en "\033[39;49;0m" 
+    if  [ -f $PIDFILE ]; then
+        kill `cat $PIDFILE`
+        printf "Nginx program is stoped\n"
+    else
+        printf  "Nginx program is not runing!\n"
+    fi
+}
+
+function_reload()
+{
+    echo -en "\033[32;49;1mReload nginx......\n"
+    echo -en "\033[39;49;0m"
+    printf "Reload Nginx configure...\n"
+    $NGINXDAEMON -t
+    kill -HUP `cat $PIDFILE`
+    printf "Nginx program is reloding!\n"
+}
+
+function_restart()
+{
+    echo -en "\033[32;49;1mRestart nginx......\n"
+    echo -en "\033[39;49;0m" 
+    printf "Reload Nginx configure...\n"
+    $NGINXDAEMON -t
+    kill -HUP `cat $PIDFILE`
+    printf "Nginx program is reloding!\n"
+}
+
+function_kill()
+{
+    killall nginx
+}
+
+function_status()
+{
+    if  ! ps -ef|grep 'nginx:' |grep -v grep> /dev/null 2>&1
+    then
+        printf "Nginx is down!!!\n"
+    else
+      printf "Nginx is running now!\n"
+    fi
+}
+
+if [ "$1" = "start" ]; then
+    function_start
+elif [ "$1" = "stop" ]; then
+    function_stop
+elif [ "$1" = "reload" ]; then
+    function_reload
+elif [ "$1" = "restart" ]; then
+    function_restart
+elif [ "$1" = "kill" ]; then
+    function_kill
+elif [ "$1" = "status" ]; then
+    function_status
+else
+    echo -en "\033[32;49;1m Usage: nginx {start|stop|reload|restart|kill|status}\n"
+    echo -en "\033[39;49;0m"
+fi
+
+
