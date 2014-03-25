@@ -62,7 +62,8 @@ set nobackup
 set nowritebackup
 
 
-set tags=tags,gem_tags
+"set tags=tags,gem_tags
+set tags=.git/tags
 
 "keyword
 "set dictionary+=/usr/share/dict/words
