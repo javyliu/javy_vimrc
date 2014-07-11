@@ -56,6 +56,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'asins/vim-dict'
 "easy motion
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'justinmk/vim-sneak'
 
 "for angularjs
 Plugin 'burnettk/vim-angular'
@@ -65,7 +66,7 @@ Plugin 'matthewsimo/angular-vim-snippets'
 Plugin 'claco/jasmine.vim'
 "
 "Plugin 'bling/vim-airline'
-
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -204,7 +205,10 @@ nmap <A-up> :lprev<cr>
 nmap <A-down> :lnext<cr>
 nmap <A-right> :ll<cr>
 
+nnoremap <silent> <F9> :TagbarToggle<CR>
 
+"1 : Enable the clever-s feature (similar to the clever-f plugin[3]).
+"let g:sneak#s_next = 0
 " Prevent vim from trying to connect to the X server when connecting
 "
 " " from home, which causes a startup delay of about 14 seconds. I
