@@ -1,12 +1,12 @@
-set vb t_vb= "关闭响铃和闪屏
+﻿"set vb t_vb= "关闭响铃和闪屏
 set guioptions-=T "gui的工具栏
 set guioptions-=r "gui的右边的滑动条
 set guioptions-=L "gui的左边的滑动条
-set guioptions-=m "gui的菜单
+"set guioptions-=m "gui的菜单
 
-set cul
-colorscheme desert
-
+"set cul
+"colorscheme desert
+syntax on
 let g:skip_loading_mswin = 1
 let g:html_indent_inctags = "html,body,head,tbody" 
 
@@ -31,12 +31,13 @@ map Y y$
 vmap // y/<c-r>"<cr>
 
 
+
 " 在浏览器预览 for win32
 function! ViewInBrowser(name)
     let file = expand("%:p")
     exec ":update " . file
     let l:browsers = {
-        \"cr":"D:/WebDevelopment/Browser/Chrome/Chrome.exe",
+        \"cr":"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
         \"ff":"D:/WebDevelopment/Browser/Firefox/Firefox.exe",
         \"op":"D:/WebDevelopment/Browser/Opera/opera.exe",
         \"ie":"C:/progra~1/intern~1/iexplore.exe",
@@ -62,3 +63,9 @@ nmap <f4>ff :call ViewInBrowser("ff")<cr>
 nmap <f4>op :call ViewInBrowser("op")<cr>
 nmap <f4>ie :call ViewInBrowser("ie")<cr>
 nmap <f4>ie6 :call ViewInBrowser("ie6")<cr>
+
+"win中自动全屏
+autocmd GUIEnter * simalt ~x
+
+filetype indent on
+
