@@ -1,14 +1,77 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " BundleInstall
-
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#rc()
+
+
+call vundle#begin()
+" let Vundle manage Vundle
+" required!
+Plugin 'gmarik/Vundle.vim'
+
+"Plugin 'Valloric/YouCompleteMe'
+" My Bundles here:
+
+"Plugin 'Align'
+Plugin 'tpope/vim-rails'
+"git.vim
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+
+"Plugin 'mattn/zencoding-vim.git'
+"Plugin 'vim-scripts/ZenCoding.vim'
+"Plugin "mattn/emmet-vim" => https://github.com/mattn/emmet-vim.git
+Plugin 'mattn/emmet-vim'
+
+Plugin 'The-NERD-Commenter'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'motemen/git-vim'
+"ack
+"Plugin 'mileszs/ack.vim'
+
+"Plugin 'msanders/snipmate.vim'
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+"Optional:
+Plugin 'honza/vim-snippets'
+
+"Plugin 'scrooloose/nerdtree'
+Plugin 'kchmck/vim-coffee-script'
+"Plugin 'hallison/vim-markdown'
+"Plugin 'groenewege/vim-less'
+Plugin 'tpope/vim-surround'
+"Plugin 'bbommarito/vim-slim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+"代码格式化插件；
+Plugin 'jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+"字典
+Plugin 'asins/vim-dict'
+"easy motion
+Plugin 'Lokaltog/vim-easymotion'
+
+"for angularjs
+Plugin 'burnettk/vim-angular'
+Plugin 'matthewsimo/angular-vim-snippets'
+"
+""making your unit testing experience more excellent
+Plugin 'claco/jasmine.vim'
+"
+"Plugin 'bling/vim-airline'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 let mapleader = ";"
 nmap <space> :
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
 " source .vimrc
 nmap <leader>s :source $HOME/.vimrc<cr>
 nmap <leader>e :sp $HOME/.vimrc<cr>
@@ -17,53 +80,12 @@ vmap <leader>r di<% <C-R>" %><esc>
 vmap <leader>re di<%= <C-R>" %><esc>
 
 nmap <leader>b :ls<cr>:e #
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
-
-"Bundle 'Align'
-Bundle 'tpope/vim-rails'
-
-"Bundle 'mattn/zencoding-vim.git'
-"Bundle 'vim-scripts/ZenCoding.vim'
-Bundle "mattn/emmet-vim"
-
-Bundle 'The-NERD-Commenter'
-"Bundle 'Valloric/YouCompleteMe'
-"git.vim
-Bundle 'motemen/git-vim'
-"ack
-"Bundle 'mileszs/ack.vim'
-
-Bundle 'msanders/snipmate.vim'
-"Bundle 'scrooloose/nerdtree'
-Bundle 'kchmck/vim-coffee-script'
-"Bundle 'hallison/vim-markdown'
-"Bundle 'groenewege/vim-less'
-Bundle 'tpope/vim-surround'
-"Bundle 'bbommarito/vim-slim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/syntastic'
-"代码格式化插件；
-Bundle 'jsbeautify'
-Bundle "pangloss/vim-javascript"
-Bundle "othree/javascript-libraries-syntax.vim"
-"字典
-Bundle 'asins/vim-dict'
-"easy motion
-Bundle 'Lokaltog/vim-easymotion'
-
 set guifont=monaco\ 10
 
 set nobackup
 set nowritebackup
 
-
-"set tags=tags,gem_tags
-set tags=.git/tags
+set tags=tags,gem_tags
 
 "keyword
 "set dictionary+=/usr/share/dict/words
@@ -88,7 +110,6 @@ set incsearch
 set hls
 
 "根据文件格式载入插件和缩进
-filetype plugin indent on
 set autoindent
 
 "打开鼠标功能
