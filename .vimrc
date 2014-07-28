@@ -67,6 +67,9 @@ Plugin 'claco/jasmine.vim'
 "
 "Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
+" my custom snippets
+
+Plugin 'javyliu/custom_snippets'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -138,7 +141,7 @@ autocmd FileType html set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType coffee set tabstop=2 shiftwidth=2
 autocmd! filetypedetect BufRead,BufNewFile *.json setf json
-autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.html.erb setf eruby.html
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
 
 fun! StripTrailingWhitespace()
   " Don't strip on these filetypes
