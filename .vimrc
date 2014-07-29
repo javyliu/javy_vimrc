@@ -19,7 +19,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-rails'
 "git.vim
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 
 "Plugin 'mattn/zencoding-vim.git'
 "Plugin 'vim-scripts/ZenCoding.vim'
@@ -28,7 +28,7 @@ Plugin 'mattn/emmet-vim'
 
 Plugin 'The-NERD-Commenter'
 "Plugin 'Valloric/YouCompleteMe'
-"Plugin 'motemen/git-vim'
+Plugin 'motemen/git-vim'
 "ack
 "Plugin 'mileszs/ack.vim'
 
