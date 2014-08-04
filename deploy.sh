@@ -2,7 +2,7 @@
 
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
 cp .vimrc .gvimrc ~/
-vim +BundleInstall +qa
+vim +PluginInstall +qa
 cp .gitconfig ~/
 
 # snipmate-snippets
