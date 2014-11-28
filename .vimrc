@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "Plugin 'Align'
 Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
 "git.vim
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
@@ -141,7 +142,8 @@ autocmd FileType ruby,rdoc set tabstop=2 shiftwidth=2
 autocmd FileType html set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType coffee set tabstop=2 shiftwidth=2
-autocmd! filetypedetect BufRead,BufNewFile *.json setf json
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.rb setf ruby.rails
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
 
 fun! StripTrailingWhitespace()
@@ -208,6 +210,10 @@ let g:ctrlp_follow_symlinks=1
 nmap <A-up> :lprev<cr>
 nmap <A-down> :lnext<cr>
 nmap <A-right> :ll<cr>
+
+"for vim-sneak
+nmap <enter> <Plug>SneakNext
+xmap <enter> <Plug>SneakNext
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
