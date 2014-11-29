@@ -212,8 +212,8 @@ nmap <A-down> :lnext<cr>
 nmap <A-right> :ll<cr>
 
 "for vim-sneak
-nmap <enter> <Plug>SneakNext
-xmap <enter> <Plug>SneakNext
+nmap \ <Plug>SneakNext
+xmap \ <Plug>SneakNext
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
