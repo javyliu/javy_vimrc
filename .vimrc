@@ -72,6 +72,9 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'javyliu/custom_snippets'
 
+"for nginx
+Plugin 'evanmiller/nginx-vim-syntax'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
