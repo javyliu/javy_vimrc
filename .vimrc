@@ -75,6 +75,9 @@ Plugin 'javyliu/custom_snippets'
 "for nginx
 Plugin 'evanmiller/nginx-vim-syntax'
 
+"for log
+Plugin 'vim-scripts/TailMinusF'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
