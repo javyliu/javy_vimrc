@@ -31,7 +31,7 @@ export EDITOR=vimm
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 [[ -r /home/wap/bash_complete/etc/profile.d/bash_completion.sh ]] && . /home/wap/bash_complete/etc/profile.d/bash_completion.sh
 
-sl
+#sl
 . ~/nvm/nvm.sh
 
 export PATH="/home/wap/bin:$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
