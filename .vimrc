@@ -31,7 +31,7 @@ Plugin 'The-NERD-Commenter'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'motemen/git-vim'
 "ack
-"Plugin 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
 "Plugin 'msanders/snipmate.vim'
 
