@@ -31,7 +31,7 @@ Plugin 'The-NERD-Commenter'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'motemen/git-vim'
 "ack
-Plugin 'mileszs/ack.vim'
+"Plugin 'mileszs/ack.vim'
 
 "Plugin 'msanders/snipmate.vim'
 
@@ -77,6 +77,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 
 "for log
 Plugin 'vim-scripts/TailMinusF'
+"for ack search
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -204,7 +206,26 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_mode_map = { 'passive_filetypes': ['html','scss', 'slim','javascript'] }
 
 "CtrlP
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" Ignore some folders and files for CtrlP indexing
+ " enable per-project .vimrc files
+set exrc
+ " Only execute safe per-project vimrc commands
+set secure
+" now you can add following to you private project's folder .vimrc
+"-----------------------------
+" set wildignore+=tags
+" set wildignore+=*/tmp/*
+" set wildignore+=*/vendor/*
+" set wildignore+=*/spec/vcr/*
+" set wildignore+=*/public/*
+" set wildignore+=*/chef/*
+" set wildignore+=*/coverage/*
+" set wildignore+=*.png,*.jpg,*.otf,*.woff,*.jpeg,*.orig
+"-----------------------------
+"tells ctrlp to persist the cache in the configured location, so when you
+"launch vim again, it will read from there and load the cache (much faster)
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.sql,*.png,*.jpg,*.JPG*.otf,*.woff,*.jpeg,*.orig
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
@@ -247,5 +268,6 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
   set clipboard=autoselect,exclude:.*
 endif
+
 
 
