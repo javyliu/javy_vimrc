@@ -94,7 +94,8 @@ vmap <leader>re di<%= <C-R>" %><esc>
 
 nmap <leader>b :ls<cr>:e #
 set guifont=monaco\ 10
-
+"clear ctrlp cache
+"nmap <leader>ca :CtrlPClearAllCaches<cr>
 set nobackup
 set nowritebackup
 
@@ -195,6 +196,8 @@ nmap <F6> :cp<cr>
 nmap <F7> :cn<cr>
 nmap <F11> gg=G<C-o>
 nnoremap <leader>gf :e <cfile><cr>
+"git co
+nmap <leader>co :GitCheckout <C-R>=expand('%')<cr>
 
 " syntastic
 let g:syntastic_check_on_open = 1
@@ -233,6 +236,8 @@ let g:ctrlp_match_window_bottom=1
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
+"don't clear cache
+let g:ctrlp_clear_cache_on_exit = 0
 
 nmap <A-up> :lprev<cr>
 nmap <A-down> :lnext<cr>
