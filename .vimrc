@@ -198,6 +198,7 @@ nmap <F11> gg=G<C-o>
 nnoremap <leader>gf :e <cfile><cr>
 "git co
 nmap <leader>co :GitCheckout <C-R>=expand('%')<cr>
+nmap <leader>gP :GitPush<cr>
 
 " syntastic
 let g:syntastic_check_on_open = 1
