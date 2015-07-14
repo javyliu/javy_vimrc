@@ -28,6 +28,7 @@ Plugin 'tpope/vim-rake'
 Plugin 'mattn/emmet-vim'
 
 Plugin 'The-NERD-Commenter'
+"need patyon 2.0
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'motemen/git-vim'
 "ack
@@ -41,7 +42,7 @@ Plugin 'garbas/vim-snipmate'
 "Optional:
 Plugin 'honza/vim-snippets'
 
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'kchmck/vim-coffee-script'
 "Plugin 'hallison/vim-markdown'
 "Plugin 'groenewege/vim-less'
