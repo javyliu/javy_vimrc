@@ -42,7 +42,11 @@ Plugin 'garbas/vim-snipmate'
 "Optional:
 Plugin 'honza/vim-snippets'
 
-Plugin 'scrooloose/nerdtree'
+"Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
+
+"Plugin 'scrooloose/nerdtree'
 Plugin 'kchmck/vim-coffee-script'
 "Plugin 'hallison/vim-markdown'
 "Plugin 'groenewege/vim-less'
@@ -147,11 +151,11 @@ set ruler
 
 autocmd FileType make     set noexpandtab
 autocmd FileType python   set noexpandtab
-autocmd FileType eruby  set tabstop=2 shiftwidth=2
-autocmd FileType ruby,rdoc set tabstop=2 shiftwidth=2
-autocmd FileType html set tabstop=2 shiftwidth=2
-autocmd FileType javascript set tabstop=2 shiftwidth=2
-autocmd FileType coffee set tabstop=2 shiftwidth=2
+"autocmd FileType eruby  set tabstop=2 shiftwidth=2
+"autocmd FileType ruby,rdoc set tabstop=2 shiftwidth=2
+"autocmd FileType html set tabstop=2 shiftwidth=2
+"autocmd FileType javascript set tabstop=2 shiftwidth=2
+"autocmd FileType coffee set tabstop=2 shiftwidth=2
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.rb setf ruby.rails
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
@@ -190,12 +194,12 @@ let g:rubycomplete_rails = 1
 " " 打开javascript对dom、html和css的支持
 "let javascript_enable_domhtmlcss=1
 
-nmap <F2> :w<cr>
-nmap <F3> :wa<cr>
-nmap <F4> :q<cr>
-nmap <F6> :cp<cr>
-nmap <F7> :cn<cr>
-nmap <F11> gg=G<C-o>
+"nmap <F2> :w<cr>
+"nmap <F3> :wa<cr>
+"nmap <F4> :q<cr>
+"nmap <F6> :cp<cr>
+"nmap <F7> :cn<cr>
+"nmap <F11> gg=G<C-o>
 nnoremap <leader>gf :e <cfile><cr>
 "git co
 nmap <leader>co :GitCheckout <C-R>=expand('%')<cr>
@@ -212,9 +216,9 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['html','scss', 'slim','javasc
 
 "CtrlP
 " Ignore some folders and files for CtrlP indexing
- " enable per-project .vimrc files
+" enable per-project .vimrc files
 set exrc
- " Only execute safe per-project vimrc commands
+" Only execute safe per-project vimrc commands
 set secure
 " now you can add following to you private project's folder .vimrc
 "-----------------------------
