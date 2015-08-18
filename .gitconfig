@@ -14,14 +14,20 @@
     rt = reset
     unstage = reset HEAD
     unci = reset --soft HEAD^
-    l = log --pretty=oneline --abbrev-commit --graph --decorate
+    l = log --pretty=oneline --abbrev-commit --graph --name-status --decorate
     amend = commit --amend
     who = shortlog -n -s --no-merges
     g = grep -n --color -E
     cp = cherry-pick -x
     nb = checkout -b
     ll = log --graph --decorate=full
+    logs = log --pretty=format:'%h -%an,%ar:%s' --graph
+[core]
+  editor = ~/bin/vim
+
   ;mkdir ~/certs
   ;curl http://curl.haxx.se/ca/cacert.pem -o ~/certs/cacert.pem
 ;[http]
    ;sslCAinfo = /home/radium/certs/cacert.pem
+[github]
+	user = javyliu
