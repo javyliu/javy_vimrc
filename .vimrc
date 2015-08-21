@@ -145,6 +145,7 @@ set smarttab
 set showcmd             " display incomplete commands
 set ambiwidth=double
 set ruler
+set nu
 "set hls
 " Display extra whitespace
 "set list listchars=tab:»·,trail:·
@@ -182,7 +183,7 @@ inoremap <c-h> <left>
 "inoremap <c-j> <down>
 "inoremap <c-k> <up>
 inoremap <c-j> <esc>o
-map Y y$
+nmap Y y$
 vmap // y/<c-r>"<cr>
 
 let g:rubycomplete_buffer_loading = 1
@@ -204,6 +205,9 @@ nnoremap <leader>gf :e <cfile><cr>
 "git co
 nmap <leader>co :GitCheckout <C-R>=expand('%')<cr>
 nmap <leader>gP :GitPush<cr>
+"bread a line to multi limes
+nmap <leader>bl V:s!\s\+!\r!g<cr>:noh<cr>
+
 
 " syntastic
 let g:syntastic_check_on_open = 1
