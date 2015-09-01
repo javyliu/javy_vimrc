@@ -84,6 +84,8 @@ Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'vim-scripts/TailMinusF'
 "for ack search
 Plugin 'mileszs/ack.vim'
+"vim-multiple-cursors
+Plugin 'terryma/vim-multiple-cursors'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
