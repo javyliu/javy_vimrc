@@ -18,6 +18,8 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'Align'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
+"vim +ruby后已自带[]该功能
+"Plugin 'vim-ruby/vim-ruby'
 "git.vim
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
@@ -30,7 +32,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'The-NERD-Commenter'
 "need patyon 2.0
 "Plugin 'Valloric/YouCompleteMe'
-Plugin 'motemen/git-vim'
+"Plugin 'motemen/git-vim'
+"change to javyliu git
+Plugin 'javyliu/git-vim'
 "ack
 "Plugin 'mileszs/ack.vim'
 
@@ -162,7 +166,8 @@ autocmd FileType python   set noexpandtab
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.rb setf ruby.rails
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
-
+"删除重复行
+:command! Td :sort|:g/^\(.\+\)$\n\1/d
 fun! StripTrailingWhitespace()
   " Don't strip on these filetypes
   if &ft =~ 'markdown'
@@ -204,9 +209,7 @@ let g:rubycomplete_rails = 1
 "nmap <F7> :cn<cr>
 "nmap <F11> gg=G<C-o>
 nnoremap <leader>gf :e <cfile><cr>
-"git co
-nmap <leader>co :GitCheckout <C-R>=expand('%')<cr>
-nmap <leader>gP :GitPush<cr>
+"nmap <leader>ggd :GitDiffAlter <cWORD><cr>
 "bread a line to multi limes
 nmap <leader>bl V:s!\s\+!\r!g<cr>:noh<cr>
 
