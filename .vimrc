@@ -106,7 +106,7 @@ vmap <leader>re di<%= <C-R>" %><esc>
 nmap <leader>b :ls<cr>:e #
 set guifont=monaco\ 10
 "clear ctrlp cache
-"nmap <leader>ca :CtrlPClearAllCaches<cr>
+nmap <leader>cd :CtrlPClearAllCaches<cr>
 set nobackup
 set nowritebackup
 
@@ -177,6 +177,9 @@ fun! StripTrailingWhitespace()
 endfun
 
 autocmd BufWritePre * call StripTrailingWhitespace()
+hi! StatusLineNC cterm=none ctermfg=7 ctermbg=0
+hi! StatusLine cterm=none ctermfg=15 ctermbg=0
+hi! VertSplit cterm=none
 
 " 快捷键
 nmap <Up> <c-w>k
@@ -263,6 +266,7 @@ nmap \ <Plug>SneakNext
 xmap \ <Plug>SneakNext
 
 nnoremap <silent> <F9> :TagbarToggle<CR>
+nnoremap <leader>t :TagbarToggle<CR>
 
 "1 : Enable the clever-s feature (similar to the clever-f plugin[3]).
 "let g:sneak#s_next = 0
