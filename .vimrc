@@ -62,6 +62,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'jsbeautify'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim'
+"jsx syntax highlighting and indenting for jsx
+Plugin 'mxw/vim-jsx'
+"react snippets
+Plugin 'justinj/vim-react-snippets'
+"for node js
+Plugin 'moll/vim-node'
 "字典
 Plugin 'asins/vim-dict'
 "easy motion
@@ -155,6 +161,7 @@ set nu
 "set hls
 " Display extra whitespace
 "set list listchars=tab:»·,trail:·
+let g:jsx_ext_required = 0
 
 autocmd FileType make     set noexpandtab
 autocmd FileType python   set noexpandtab
@@ -163,7 +170,7 @@ autocmd FileType python   set noexpandtab
 "autocmd FileType html set tabstop=2 shiftwidth=2
 "autocmd FileType javascript set tabstop=2 shiftwidth=2
 "autocmd FileType coffee set tabstop=2 shiftwidth=2
-autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json.javascript
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.rb setf ruby.rails
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
 "删除重复行
@@ -293,5 +300,28 @@ if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
   set clipboard=autoselect,exclude:.*
 endif
 
+
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rspec'
+
+"搜入执行命令后的值
+function! InsertCommand(command)
+    redir => output
+    silent execute a:command
+    redir END
+    call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
+endfunction
+
+command! -nargs=+ Iruby  call InsertCommand("ruby " . <q-args>)
+
+"inoremap <C-R>] <esc>:call InsertCommand("
+inoremap <C-R>] <esc>:Iruby
+
+"inoremap { {}<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap " ""<left>
+"inoremap ' ''<left>
 
 
