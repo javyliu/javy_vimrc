@@ -24,6 +24,18 @@ alias start_memcache='memcached -d -m 900 -p 11211 -P /tmp/memcached.pid'
 alias stop_memcache='kill `cat /tmp/memcached.pid`'
 alias restart_memcach='stop_memcache;start_memcache;'
 
+#--------from zsh--------------------
+
+alias md='mkdir -p'
+alias rd=rmdir
+
+# List directory contents
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+#--------end zsh--------------------
 export SVN_EDITOR=vimm
 export EDITOR=vimm
 #for the nvm
