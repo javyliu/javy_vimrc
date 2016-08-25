@@ -51,6 +51,9 @@ Plugin 'honza/vim-snippets'
 "Plugin 'Shougo/neosnippet-snippets'
 
 "Plugin 'scrooloose/nerdtree'
+"
+"
+"is in vim-snippets/coffee
 Plugin 'kchmck/vim-coffee-script'
 "Plugin 'hallison/vim-markdown'
 "Plugin 'groenewege/vim-less'
@@ -59,13 +62,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 "代码格式化插件；
-Plugin 'jsbeautify'
 Plugin 'pangloss/vim-javascript'
+"Plugin 'maksimr/vim-jsbeautify'
+"Json hightlight
+"Plugin 'elzr/vim-json'
 Plugin 'othree/javascript-libraries-syntax.vim'
 "jsx syntax highlighting and indenting for jsx
 Plugin 'mxw/vim-jsx'
 "react snippets
 Plugin 'justinj/vim-react-snippets'
+"es6
+Plugin 'isRuslan/vim-es6'
 "for node js
 Plugin 'moll/vim-node'
 "字典
@@ -97,8 +104,16 @@ Plugin 'mileszs/ack.vim'
 "vim-multiple-cursors
 Plugin 'terryma/vim-multiple-cursors'
 
+"indentLine
+"Plugin 'Yggdroot/indentLine'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"indentLine color
+"let g:indentLine_color_term = 239
+"let g:indentLine_color_dark = 1
+"let g:indentLine_char = ''
 
 let mapleader = ";"
 nmap <space> :
@@ -109,12 +124,13 @@ nmap <leader>e :sp $HOME/.vimrc<cr>
 vmap <leader>r di<% <C-R>" %><esc>
 vmap <leader>re di<%= <C-R>" %><esc>
 
-nmap <leader>b :ls<cr>:e #
+nmap <leader>b :ls<cr>:sp #
 set guifont=monaco\ 10
 "clear ctrlp cache
 nmap <leader>cd :CtrlPClearAllCaches<cr>
 set nobackup
 set nowritebackup
+set backupcopy=yes
 
 "set tags=tags,.
 set tags=.git/tags
@@ -161,6 +177,7 @@ set nu
 "set hls
 " Display extra whitespace
 "set list listchars=tab:»·,trail:·
+"Syntax highlighting and indenting for JSX in .js files
 let g:jsx_ext_required = 0
 
 autocmd FileType make     set noexpandtab
@@ -170,6 +187,7 @@ autocmd FileType python   set noexpandtab
 "autocmd FileType html set tabstop=2 shiftwidth=2
 "autocmd FileType javascript set tabstop=2 shiftwidth=2
 "autocmd FileType coffee set tabstop=2 shiftwidth=2
+autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.coffee setf coffee
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.json setf json.javascript
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.rb setf ruby.rails
 autocmd! filetypedetect BufEnter,BufRead,BufNewFile *.erb setf eruby.html
@@ -193,6 +211,7 @@ nmap <Up> <c-w>k
 nmap <Down> <c-w>j
 nmap <Right> <c-w>l
 nmap <Left> <c-w>h
+
 
 
 inoremap <c-l> <right>
@@ -231,6 +250,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_mode_map = { 'passive_filetypes': ['html','scss', 'slim','javascript'] }
 
 "CtrlP
@@ -254,7 +274,7 @@ set secure
 "launch vim again, it will read from there and load the cache (much faster)
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.sql,*.png,*.jpg,*.JPG*.otf,*.woff,*.jpeg,*.orig
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$\|node_modules'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 "let g:ctrlp_max_height=15
@@ -300,7 +320,6 @@ if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
   set clipboard=autoselect,exclude:.*
 endif
 
-
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rspec'
@@ -313,7 +332,7 @@ function! InsertCommand(command)
     call feedkeys('i'.substitute(output, '^[\n]*\(.\{-}\)[\n]*$', '\1', 'gm'))
 endfunction
 
-command! -nargs=+ Iruby  call InsertCommand("ruby " . <q-args>)
+command! -nargs=+ Iruby  call InsertCommand("ruby puts " . <q-args>)
 
 "inoremap <C-R>] <esc>:call InsertCommand("
 inoremap <C-R>] <esc>:Iruby
@@ -324,4 +343,16 @@ inoremap <C-R>] <esc>:Iruby
 "inoremap " ""<left>
 "inoremap ' ''<left>
 
+map <leader>v :call SetColorColumn()<CR>
+map <leader>cv :set cc=<CR>
 
+"set the column color
+fun! SetColorColumn()
+  let col_num = virtcol(".")
+  let cc_list = split(&cc, ',')
+  if count(cc_list, string(col_num)) <= 0
+    execute "set cc+=".col_num
+  else
+    execute "set cc-=".col_num
+  endif
+endf
