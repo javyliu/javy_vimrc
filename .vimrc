@@ -342,6 +342,7 @@ inoremap <C-R>] <esc>:Iruby
 "inoremap [ []<left>
 "inoremap " ""<left>
 "inoremap ' ''<left>
+inoremap <leader>p <C-O>"*p
 
 map <leader>v :call SetColorColumn()<CR>
 map <leader>cv :set cc=<CR>
