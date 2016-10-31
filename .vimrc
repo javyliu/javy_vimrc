@@ -78,7 +78,8 @@ Plugin 'moll/vim-node'
 "字典
 Plugin 'asins/vim-dict'
 "easy motion
-Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'justinmk/vim-sneak'
 
 "for angularjs
@@ -103,6 +104,9 @@ Plugin 'vim-scripts/TailMinusF'
 Plugin 'mileszs/ack.vim'
 "vim-multiple-cursors
 Plugin 'terryma/vim-multiple-cursors'
+"gist-vim
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 
 "indentLine
 "Plugin 'Yggdroot/indentLine'
@@ -237,10 +241,15 @@ let g:rubycomplete_rails = 1
 "nmap <F6> :cp<cr>
 "nmap <F7> :cn<cr>
 "nmap <F11> gg=G<C-o>
-nnoremap <leader>gf :e <cfile><cr>
+"打开当前光标文件名的文件
+nnoremap <leader>gf :sp <cfile><cr>
 "nmap <leader>ggd :GitDiffAlter <cWORD><cr>
-"bread a line to multi limes
+"按空格打把一行打散成多行
 nmap <leader>bl V:s!\s\+!\r!g<cr>:noh<cr>
+"列出gist
+map <leader>gi :Gist
+map <leader>gil :Gist -l<cr>
+map <leader>gie :Gist -e
 
 
 " syntastic
@@ -344,8 +353,13 @@ inoremap <C-R>] <esc>:Iruby
 "inoremap ' ''<left>
 inoremap <leader>p <C-O>"*p
 
-map <leader>v :call SetColorColumn()<CR>
-map <leader>cv :set cc=<CR>
+nmap <leader>v :call SetColorColumn()<CR>
+nmap <leader>cv :set cc=<CR>
+
+"for gist
+
+
+
 
 "set the column color
 fun! SetColorColumn()
