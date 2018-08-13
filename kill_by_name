@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+# Author: javy liu
+#Date & Time: 2018年 08月 13日 星期一 13:29:36 CST
+#Description: 安全删除指定名字的进程
+
+pro_name=$1
+shell_name=$0
+PIDS=`ps aux | grep "$pro_name" | grep -v "grep" | grep -v "$shell_name" |awk '{print $2}'`
+echo "--${pro_name}--${PIDS}-----"
+if [ -z "$PIDS" ]; then
+  echo "警告: $pro_name 未启动!"
+  exit 1
+fi
+echo -e "正在停止 $pro_name 进程[PIDS] ..."
+
+kill $PIDS > /dev/null 2>&1
+
+#10秒后如果进程还存在则强杀之
+count=10
+while [ $count -gt 0 ]; do
+  echo "等待......."
+  sleep 2
+  count=$(( count - 1 ))
+  is_remain=0
+
+  for pid in $PIDS; do
+    PID_EXIST=`ps -f -p $pid | grep -v "grep"| grep -v "$shell_name"`
+    if [[ -n "$PID_EXIST" ]]; then
+      is_remain=1
+      break
+    fi
+  done
+
+
+  #如已杀掉，则退出循环
+  if [[ "$is_remain" == 0 ]]; then
+    echo 已杀
+    break
+  elif [[ $count == 0 ]]; then
+    echo -e "强杀 $pro_name 进程[$PIDS] ..."
+    kill -9 $PIDS > /dev/null 2>&1
+    exit 1
+  fi
+done
+echo "$pro_name 进程[PIDS], 已停止!"
