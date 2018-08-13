@@ -23,7 +23,7 @@ while [ $count -gt 0 ]; do
   is_remain=0
 
   for pid in $PIDS; do
-    PID_EXIST=`ps -f -p $pid | grep -v "grep"| grep -v "$shell_name"`
+    PID_EXIST=`ps aux| grep $pid | grep -v "grep"`
     if [[ -n "$PID_EXIST" ]]; then
       is_remain=1
       break
