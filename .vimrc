@@ -5,7 +5,7 @@ filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#rc()
-
+let g:vundle_default_git_proto = 'git'
 
 call vundle#begin()
 " let Vundle manage Vundle
@@ -169,10 +169,14 @@ set autoindent
 
 "指标符宽度
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set sw=2
 set expandtab
+
 set smarttab
+"set list
+"set listchars=tab:-,eol:,trail:-
 
 set showcmd             " display incomplete commands
 set ambiwidth=double
@@ -289,6 +293,7 @@ let g:ctrlp_match_window_bottom=1
 "let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
+let g:ctrlp_max_files=0
 let g:ctrlp_follow_symlinks=1
 "don't clear cache
 let g:ctrlp_clear_cache_on_exit = 0
