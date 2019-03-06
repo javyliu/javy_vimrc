@@ -22,7 +22,7 @@ Plugin 'tpope/vim-rake'
 "Plugin 'vim-ruby/vim-ruby'
 "git.vim
 " plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 "Plugin 'mattn/zencoding-vim.git'
 "Plugin 'vim-scripts/ZenCoding.vim'
@@ -34,7 +34,7 @@ Plugin 'The-NERD-Commenter'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'motemen/git-vim'
 "change to javyliu git
-Plugin 'javyliu/git-vim'
+"Plugin 'javyliu/git-vim'
 "ack
 "Plugin 'mileszs/ack.vim'
 
@@ -96,7 +96,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'javyliu/custom_snippets'
 
 "for nginx
-Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'chr4/nginx.vim'
 
 "for log
 Plugin 'vim-scripts/TailMinusF'
@@ -120,18 +120,6 @@ filetype plugin indent on    " required
 "let g:indentLine_char = ''
 
 let mapleader = ";"
-nmap <space> :
-" source .vimrc
-nmap <leader>s :source $HOME/.vimrc<cr>
-nmap <leader>e :sp $HOME/.vimrc<cr>
-" round by <%=%>
-vmap <leader>r di<% <C-R>" %><esc>
-vmap <leader>re di<%= <C-R>" %><esc>
-
-nmap <leader>b :ls<cr>:sp #
-set guifont=monaco\ 10
-"clear ctrlp cache
-nmap <leader>cd :CtrlPClearAllCaches<cr>
 set nobackup
 set nowritebackup
 set backupcopy=yes
@@ -245,15 +233,6 @@ let g:rubycomplete_rails = 1
 "nmap <F6> :cp<cr>
 "nmap <F7> :cn<cr>
 "nmap <F11> gg=G<C-o>
-"打开当前光标文件名的文件
-nnoremap <leader>gf :sp <cfile><cr>
-"nmap <leader>ggd :GitDiffAlter <cWORD><cr>
-"按空格打把一行打散成多行
-nmap <leader>bl V:s!\s\+!\r!g<cr>:noh<cr>
-"列出gist
-map <leader>gi :Gist
-map <leader>gil :Gist -l<cr>
-map <leader>gie :Gist -e
 
 
 " syntastic
@@ -287,7 +266,7 @@ set secure
 "launch vim again, it will read from there and load the cache (much faster)
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.sql,*.png,*.jpg,*.JPG*.otf,*.woff,*.jpeg,*.orig
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$\|node_modules'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$\|node_modules|doc'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 "let g:ctrlp_max_height=15
@@ -306,8 +285,6 @@ nmap <A-right> :ll<cr>
 nmap \ <Plug>SneakNext
 xmap \ <Plug>SneakNext
 
-nnoremap <silent> <F9> :TagbarToggle<CR>
-nnoremap <leader>t :TagbarToggle<CR>
 
 "1 : Enable the clever-s feature (similar to the clever-f plugin[3]).
 "let g:sneak#s_next = 0
@@ -348,8 +325,30 @@ endfunction
 
 command! -nargs=+ Iruby  call InsertCommand("ruby puts " . <q-args>)
 
+set guifont=monaco\ 10
 "inoremap <C-R>] <esc>:call InsertCommand("
 inoremap <C-R>] <esc>:Iruby
+
+nmap <space> :
+" source .vimrc
+nmap <leader>s :source $HOME/.vimrc<cr>
+nmap <leader>e :sp $HOME/.vimrc<cr>
+" round by <%=%>
+vmap <leader>r di<% <C-R>" %><esc>
+vmap <leader>re di<%= <C-R>" %><esc>
+
+nmap <leader>b :ls<cr>:sp #
+"clear ctrlp cache
+nmap <leader>cd :CtrlPClearAllCaches<cr>
+nmap <leader>ww :close<cr>
+nmap <leader>wf :cclose<cr>
+
+"vim-fugitive
+nmap <leader>gc :Gcommit -a<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gp :Gpull --rebase<cr>
+nmap <leader>gP :Gpush<cr>
+nmap <leader>gl :Glog --pretty=oneline --abbrev-commit --graph --name-status --decorate<cr>
 
 "inoremap { {}<left>
 "inoremap ( ()<left>
@@ -361,9 +360,18 @@ inoremap <leader>p <C-O>"*p
 nmap <leader>v :call SetColorColumn()<CR>
 nmap <leader>cv :set cc=<CR>
 
-"for gist
+"打开当前光标文件名的文件
+nnoremap <leader>gf :sp <cfile><cr>
+"nmap <leader>ggd :GitDiffAlter <cWORD><cr>
+"按空格打把一行打散成多行
+nmap <leader>bl V:s!\s\+!\r!g<cr>:noh<cr>
+"列出gist
+map <leader>gi :Gist
+map <leader>gil :Gist -l<cr>
+map <leader>gie :Gist -e
 
-
+nnoremap <silent> <F9> :TagbarToggle<CR>
+nnoremap <leader>t :TagbarToggle<CR>
 
 
 "set the column color
