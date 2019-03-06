@@ -342,6 +342,7 @@ nmap <leader>b :ls<cr>:sp #
 nmap <leader>cd :CtrlPClearAllCaches<cr>
 nmap <leader>ww :close<cr>
 nmap <leader>wf :cclose<cr>
+nmap <leader>fw :copen<cr>
 
 "vim-fugitive
 nmap <leader>gc :Gcommit -a<cr>
