@@ -385,3 +385,11 @@ fun! SetColorColumn()
     execute "set cc-=".col_num
   endif
 endf
+
+"用于选择区域执行记录的动作
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
