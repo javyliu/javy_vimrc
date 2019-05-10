@@ -80,7 +80,7 @@ Plugin 'asins/vim-dict'
 "easy motion
 "Plugin 'Lokaltog/vim-easymotion'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'justinmk/vim-sneak'
+"Plugin 'justinmk/vim-sneak'
 
 "for angularjs
 Plugin 'burnettk/vim-angular'
@@ -119,7 +119,7 @@ filetype plugin indent on    " required
 "let g:indentLine_color_dark = 1
 "let g:indentLine_char = ''
 
-let mapleader = ";"
+let mapleader = '\'
 set nobackup
 set nowritebackup
 set backupcopy=yes
@@ -282,8 +282,8 @@ nmap <A-down> :lnext<cr>
 nmap <A-right> :ll<cr>
 
 "for vim-sneak
-nmap \ <Plug>SneakNext
-xmap \ <Plug>SneakNext
+"nmap \ <Plug>SneakNext
+"xmap \ <Plug>SneakNext
 
 
 "1 : Enable the clever-s feature (similar to the clever-f plugin[3]).
@@ -374,6 +374,34 @@ map <leader>gie :Gist -e
 nnoremap <silent> <F9> :TagbarToggle<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 
+"easymotion----------------------------
+"<Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+"s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
+" EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+"easymotion----------------------------
 
 "set the column color
 fun! SetColorColumn()
