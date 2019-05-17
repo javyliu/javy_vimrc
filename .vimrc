@@ -312,8 +312,7 @@ omap / <Plug>(easymotion-tn)
 
 nmap <space> :
 " source .vimrc
-nmap <leader>s :source $HOME/.vimrc<cr>
-nmap <leader>e :sp $HOME/.vimrc<cr>
+nmap <leader>lv :source $HOME/.vimrc<cr>
 " round by <%=%>
 vmap <leader>r di<% <C-R>" %><esc>
 vmap <leader>re di<%= <C-R>" %><esc>
@@ -367,20 +366,22 @@ nnoremap <leader>t :TagbarToggle<CR>
 
 "easymotion----------------------------
 "<Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+"map  <Leader>f <Plug>(easymotion-bd-f)
+"nmap <Leader>f <Plug>(easymotion-overwin-f)
 "s{char}{char} to move to {char}{char}
 "nmap s <Plug>(easymotion-overwin-f2)
 " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+map <Leader>F <Plug>(easymotion-bd-jk)
+nmap <Leader>G <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader>g <Plug>(easymotion-lineforward)
+map <Leader>f <Plug>(easymotion-j)
+map <Leader>d <Plug>(easymotion-k)
+map <Leader>s <Plug>(easymotion-linebackward)
 
 " 快捷键
 nmap <Up> <c-w>k
