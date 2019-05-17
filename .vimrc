@@ -202,21 +202,6 @@ hi! StatusLineNC cterm=none ctermfg=7 ctermbg=0
 hi! StatusLine cterm=none ctermfg=15 ctermbg=0
 hi! VertSplit cterm=none
 
-" 快捷键
-nmap <Up> <c-w>k
-nmap <Down> <c-w>j
-nmap <Right> <c-w>l
-nmap <Left> <c-w>h
-
-
-
-inoremap <c-l> <right>
-inoremap <c-h> <left>
-"inoremap <c-j> <down>
-"inoremap <c-k> <up>
-inoremap <c-j> <esc>o
-nmap Y y$
-vmap <leader><leader> y/<c-r>"
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
@@ -277,15 +262,6 @@ let g:ctrlp_follow_symlinks=1
 "don't clear cache
 let g:ctrlp_clear_cache_on_exit = 0
 
-nmap <A-up> :lprev<cr>
-nmap <A-down> :lnext<cr>
-nmap <A-right> :ll<cr>
-
-"for vim-sneak
-"nmap \ <Plug>SneakNext
-"xmap \ <Plug>SneakNext
-
-
 "1 : Enable the clever-s feature (similar to the clever-f plugin[3]).
 "let g:sneak#s_next = 0
 " Prevent vim from trying to connect to the X server when connecting
@@ -328,6 +304,11 @@ command! -nargs=+ Iruby  call InsertCommand("ruby puts " . <q-args>)
 set guifont=monaco\ 10
 "inoremap <C-R>] <esc>:call InsertCommand("
 inoremap <C-R>] <esc>:Iruby
+nmap Y y$
+vnoremap // y/<c-r>"<cr>
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 nmap <space> :
 " source .vimrc
@@ -358,8 +339,18 @@ nmap <leader>gl :Glog --pretty=oneline --abbrev-commit --graph --name-status --d
 "inoremap ' ''<left>
 inoremap <leader>p <C-O>"*p
 
+
 nmap <leader>v :call SetColorColumn()<CR>
 nmap <leader>cv :set cc=<CR>
+
+nmap <A-up> :lprev<cr>
+nmap <A-down> :lnext<cr>
+nmap <A-right> :ll<cr>
+
+"for vim-sneak
+"nmap \ <Plug>SneakNext
+"xmap \ <Plug>SneakNext
+
 
 "打开当前光标文件名的文件
 nnoremap <leader>gf :sp <cfile><cr>
@@ -390,15 +381,28 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+
+" 快捷键
+nmap <Up> <c-w>k
+nmap <Down> <c-w>j
+nmap <Right> <c-w>l
+nmap <Left> <c-w>h
+
+
+
+inoremap <c-l> <right>
+inoremap <c-h> <left>
+"inoremap <c-j> <down>
+"inoremap <c-k> <up>
+inoremap <c-j> <esc>o
+
 
 " These `n` & `N` mappings are options. You do not have to map `n` & `N` to
 " EasyMotion.
 " Without these mappings, `n` & `N` works fine. (These mappings just provide
 " different highlight method and have some other features )
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+"map  n <Plug>(easymotion-next)
+"map  N <Plug>(easymotion-prev)
 
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "easymotion----------------------------
