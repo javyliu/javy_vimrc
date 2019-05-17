@@ -216,7 +216,7 @@ inoremap <c-h> <left>
 "inoremap <c-k> <up>
 inoremap <c-j> <esc>o
 nmap Y y$
-vmap // y/<c-r>"<cr>
+vmap <leader><leader> y/<c-r>"
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
