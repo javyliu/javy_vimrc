@@ -10,6 +10,11 @@ cp .vimrc .gvimrc .pryrc ~/
 vim +PluginInstall +qa
 cp .gitconfig ~/
 
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
+git clone git://github.com/wting/autojump.git ../
+cd ../autojump
+./install.py
+
 # snipmate-snippets
 #git submodule init; git submodule update
 #cd snipmate-snippets/; rake deploy_local; cd -
