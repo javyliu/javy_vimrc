@@ -10,7 +10,6 @@ cp .vimrc .gvimrc .pryrc ~/
 vim +PluginInstall +qa
 cp .gitconfig ~/
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
 git clone git://github.com/wting/autojump.git ../
 cd ../autojump
 ./install.py
