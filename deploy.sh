@@ -10,7 +10,7 @@ cp .vimrc .gvimrc .pryrc ~/
 vim +PluginInstall +qa
 cp .gitconfig ~/
 
-git clone git://github.com/wting/autojump.git ../
+git clone git://github.com/wting/autojump.git ~/software/autojump
 cd ../autojump
 ./install.py
 
