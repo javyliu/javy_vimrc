@@ -11,7 +11,7 @@ vim +PluginInstall +qa
 cp .gitconfig ~/
 
 git clone git://github.com/wting/autojump.git ~/software/autojump
-cd ../autojump
+cd ~/software/autojump
 ./install.py
 
 # snipmate-snippets
