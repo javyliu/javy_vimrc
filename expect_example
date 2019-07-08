@@ -1,0 +1,12 @@
+/bi/nbas"密码"
+send "pwd\r"
+send_user "重启tomcat\n"
+send "/data5/tomcat_6060/bin/shutdown.sh\r"
+sleep 1
+send "/data5/tomcat_6060/bin/start.sh\r"
+send_user "重启tomcat结束\n"
+#interact
+expect eof
+send "exit\r"
+[majiang@pip32_5 ~]$ expect
+expect1.1> exitspawn: 未找到命令
