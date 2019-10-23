@@ -11,7 +11,8 @@ sudo yum clean all &&  sudo yum makecache
 sudo yum install git
 #install vim 8
 vim_src_path=~/software/vim_src
-sudo yum instal gcc  libXt-devel.x86_64 ncurses-devel.x86_64
+mkdir -p $vim_src_path
+sudo yum install gcc  libXt-devel.x86_64 ncurses-devel.x86_64
 git clone https://github.com/vim/vim.git $vim_src_path
 cd $vim_src_path
 ./configure --enable-gui=X11 --enable-gui --with-x=yes  --enable-cscope --enable-multibyte --enable-xim --enable-fontset --with-features=huge
