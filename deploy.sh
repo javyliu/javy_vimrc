@@ -12,7 +12,7 @@ sudo yum install git
 #install vim 8
 vim_src_path=~/software/vim_src
 mkdir -p $vim_src_path
-sudo yum install gcc  libXt-devel.x86_64 ncurses-devel.x86_64
+sudo yum -y install gcc  libXt-devel.x86_64 ncurses-devel.x86_64
 git clone https://github.com/vim/vim.git $vim_src_path
 cd $vim_src_path
 ./configure --enable-gui=X11 --enable-gui --with-x=yes  --enable-cscope --enable-multibyte --enable-xim --enable-fontset --with-features=huge
@@ -34,6 +34,8 @@ cp .gitconfig ~/
 git clone git://github.com/wting/autojump.git ~/software/autojump
 cd ~/software/autojump
 ./install.py
+
+echo " [[ -s /home/${USER}/.autojump/etc/profile.d/autojump.sh ]] && source /home/${USER}/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 
 
 
@@ -64,3 +66,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+
+#enable password login
+
+sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
