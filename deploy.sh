@@ -48,3 +48,18 @@ sudo yum -y install docker-ce
 
 sudo systemctl enable docker
 sudo systemctl start docker
+
+sudo groupadd docker #add docker group
+sudo gpasswd -a $USER docker #add current user to docker group
+newgrp docker #update docker group
+docker ps
+
+#update docker mirror
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://ngh30kcx.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
