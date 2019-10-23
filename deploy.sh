@@ -39,12 +39,20 @@ cd ~/software/autojump
 echo " [[ -s /home/${USER}/.autojump/etc/profile.d/autojump.sh ]] && source /home/${USER}/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 
 
-#enable password login 
+#enable password login
 sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
 
 # snipmate-snippets
 #git submodule init; git submodule update
 #cd snipmate-snippets/; rake deploy_local; cd -
+
+
+#install rvm
+gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+curl -sSL https://get.rvm.io | bash -s stable
+. ~/.bashrc
+rvm install 2.6
+
 
 #install docker
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
@@ -57,9 +65,8 @@ sudo systemctl start docker
 
 sudo groupadd docker #add docker group
 sudo gpasswd -a $USER docker #add current user to docker group
-sudo newgrp docker #update docker group
+newgrp docker #update docker group
 #docker ps
-
 #update docker mirror
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'>/dev/null
