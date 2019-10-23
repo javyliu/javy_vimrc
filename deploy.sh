@@ -22,6 +22,7 @@ make && sudo make install
 #install ack
 mkdir ~/bin
 #curl http://beyondgrep.com/ack-2.14-single-file > ~/bin/ack && chmod 0755 ~/bin/ack
+cd ~/software/javy_vimrc
 cp ./ack ~/bin/ack
 chmod 0755 ~/bin/ack
 cp ./new_bash.sh ~/bin/
@@ -38,6 +39,8 @@ cd ~/software/autojump
 echo " [[ -s /home/${USER}/.autojump/etc/profile.d/autojump.sh ]] && source /home/${USER}/.autojump/etc/profile.d/autojump.sh" >> ~/.bashrc
 
 
+#enable password login 
+sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
 
 # snipmate-snippets
 #git submodule init; git submodule update
@@ -54,8 +57,8 @@ sudo systemctl start docker
 
 sudo groupadd docker #add docker group
 sudo gpasswd -a $USER docker #add current user to docker group
-newgrp docker #update docker group
-docker ps
+sudo newgrp docker #update docker group
+#docker ps
 
 #update docker mirror
 sudo mkdir -p /etc/docker
@@ -67,6 +70,3 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-#enable password login
-
-sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
