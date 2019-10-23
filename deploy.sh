@@ -59,7 +59,7 @@ docker ps
 
 #update docker mirror
 sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF'
+sudo tee /etc/docker/daemon.json <<-'EOF'>/dev/null
 {
   "registry-mirrors": ["https://ngh30kcx.mirror.aliyuncs.com"]
 }
