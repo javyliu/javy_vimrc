@@ -46,6 +46,10 @@ sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
 #git submodule init; git submodule update
 #cd snipmate-snippets/; rake deploy_local; cd -
 
+#install depencity software  for the rails
+sudo yum -y install mysql_devel nodejs
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo yum install yarn
 
 #install rvm
 gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
