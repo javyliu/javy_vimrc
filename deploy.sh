@@ -47,7 +47,9 @@ sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
 #cd snipmate-snippets/; rake deploy_local; cd -
 
 #install depencity software  for the rails
-sudo yum -y install mysql_devel nodejs
+curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo yum install nodejs
+sudo yum -y install mysql_devel
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install yarn
 
