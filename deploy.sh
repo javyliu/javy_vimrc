@@ -23,9 +23,14 @@ make && sudo make install
 mkdir ~/bin
 #curl http://beyondgrep.com/ack-2.14-single-file > ~/bin/ack && chmod 0755 ~/bin/ack
 cd ~/software/javy_vimrc
-cp ./ack ~/bin/ack
-chmod 0755 ~/bin/ack
-cp ./new_bash.sh ~/bin/
+
+#cp ./ack ~/bin/ack
+ln -s ~/software/javy_vimrc/ack ~/bin/
+ln -s ~/software/javy_vimrc/docker-tags ~/bin/
+ln -s ~/software/javy_vimrc/new-bash ~/bin/
+ln -s ~/software/javy_vimrc/jq ~/bin/
+#chmod 0755 ~/bin/ack
+#cp ./new_bash.sh ~/bin/
 #for vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
 cp .vimrc .gvimrc .pryrc ~/
