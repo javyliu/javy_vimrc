@@ -18,6 +18,8 @@ cd $vim_src_path
 ./configure --enable-gui=X11 --enable-gui --with-x=yes  --enable-cscope --enable-multibyte --enable-xim --enable-fontset --with-features=huge
 make && sudo make install
 
+#support rz sz
+sudo yum install lrzsz
 
 #install ack
 mkdir ~/bin
