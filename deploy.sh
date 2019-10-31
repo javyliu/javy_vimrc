@@ -60,6 +60,10 @@ sudo yum -y install nodejs
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum install yarn
 
+#set the yarn registry
+yarn config set registry https://registry.npm.taobao.org
+
+
 #install rvm
 gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable
@@ -90,3 +94,5 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
+#postsql 源
+#sudo yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rp
