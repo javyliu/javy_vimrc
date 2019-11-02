@@ -8,7 +8,7 @@ sudo yum -y install epel-release
 sudo yum clean all &&  sudo yum makecache
 
 #install git
-sudo yum install git
+#sudo yum install git
 #install vim 8
 vim_src_path=~/software/vim_src
 mkdir -p $vim_src_path
@@ -58,7 +58,7 @@ sudo yum -y install mysql_devel
 curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
 sudo yum -y install nodejs
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
-sudo yum install yarn
+sudo yum -y install yarn
 
 #set the yarn registry
 yarn config set registry https://registry.npm.taobao.org
