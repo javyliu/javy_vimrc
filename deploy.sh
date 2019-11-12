@@ -71,6 +71,10 @@ curl -sSL https://get.rvm.io | bash -s stable
 . ~/.bashrc
 rvm install 2.6
 
+#install imagemagick
+sudo yum -y install ImageMagick
+sudo sed -i '/pattern="LABEL"/s/none/read|write/' /etc/ImageMagick/policy.xml
+
 
 #install docker
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
