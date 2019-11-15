@@ -19,7 +19,7 @@ cd $vim_src_path
 make && sudo make install
 
 #support rz sz
-sudo yum install lrzsz
+sudo yum -y install lrzsz
 
 #install ack
 mkdir ~/bin
