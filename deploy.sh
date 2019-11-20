@@ -19,7 +19,7 @@ cd $vim_src_path
 make && sudo make install
 
 #support rz sz
-sudo yum install lrzsz
+sudo yum -y install lrzsz
 
 #install ack
 mkdir ~/bin
@@ -48,7 +48,7 @@ echo " [[ -s /home/${USER}/.autojump/etc/profile.d/autojump.sh ]] && source /hom
 
 #enable password login
 sudo sed -i '/^PasswordAuthentication/s/no/yes/' /etc/ssh/sshd_config
-
+sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config # 永久禁止selinux
 # snipmate-snippets
 #git submodule init; git submodule update
 #cd snipmate-snippets/; rake deploy_local; cd -
