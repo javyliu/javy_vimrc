@@ -101,3 +101,18 @@ sudo systemctl restart docker
 
 #postsql 源
 #sudo yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rp
+
+#install google-chrome-stable
+
+sudo tee /etc/yum.repos.d/google-chrome.repo <<-'EOF'>/dev/null
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+EOF
+sudo yum install -y google-chrome-stable
+
+#install firefox
+sudo yum install -y firefox
