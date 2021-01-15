@@ -251,7 +251,7 @@ set secure
 "launch vim again, it will read from there and load the cache (much faster)
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.sql,*.png,*.jpg,*.JPG*.otf,*.woff,*.jpeg,*.orig
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$\|node_modules|doc'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$\|node_modules\|doc'
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 "let g:ctrlp_max_height=15
