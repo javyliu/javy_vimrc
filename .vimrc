@@ -70,7 +70,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 "jsx syntax highlighting and indenting for jsx
 Plugin 'mxw/vim-jsx'
 "react snippets
-Plugin 'justinj/vim-react-snippets'
+"Plugin 'justinj/vim-react-snippets'
 "es6
 Plugin 'isRuslan/vim-es6'
 "for node js
@@ -83,8 +83,8 @@ Plugin 'easymotion/vim-easymotion'
 "Plugin 'justinmk/vim-sneak'
 
 "for angularjs
-Plugin 'burnettk/vim-angular'
-Plugin 'matthewsimo/angular-vim-snippets'
+"Plugin 'burnettk/vim-angular'
+"Plugin 'matthewsimo/angular-vim-snippets'
 "
 ""making your unit testing experience more excellent
 Plugin 'claco/jasmine.vim'
@@ -119,7 +119,7 @@ filetype plugin indent on    " required
 "let g:indentLine_color_dark = 1
 "let g:indentLine_char = ''
 
-let mapleader = '\'
+let mapleader = ';'
 set nobackup
 set nowritebackup
 set backupcopy=yes
@@ -131,9 +131,9 @@ set tags=.git/tags
 "set dictionary+=/usr/share/dict/words
 autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/javascript.dic
 autocmd filetype javascript set dictionary+=$HOME/.vim/bundle/vim-dict/dict/node.dic
-autocmd filetype javascript set dictionary+=$HOME/javy_vimrc/angularjs.dic
+"autocmd filetype javascript set dictionary+=$HOME/javy_vimrc/angularjs.dic
 autocmd filetype css set dictionary+=$HOME/.vim/bundle/vim-dict/dict/css.dic
-autocmd filetype html set dictionary+=$HOME/javy_vimrc/angular_html.dic
+"autocmd filetype html set dictionary+=$HOME/javy_vimrc/angular_html.dic
 set isk+=-
 
 "语法高亮
@@ -324,6 +324,8 @@ nmap <leader>ww :close<cr>
 nmap <leader>wf :cclose<cr>
 nmap <leader>fw :copen<cr>
 
+"set current path
+nmap <leader>cp :lcd %:h<cr>
 "vim-fugitive
 nmap <leader>gc :Gcommit -a<cr>
 nmap <leader>gs :Gstatus<cr>
