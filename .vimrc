@@ -126,6 +126,7 @@ set backupcopy=yes
 
 "set tags=tags,.
 set tags=.git/tags
+nmap <F8> :TagbarToggle<CR>
 
 "keyword
 "set dictionary+=/usr/share/dict/words
@@ -287,7 +288,7 @@ if $DISPLAY =~ '\(\(cos\|scs\)\d\+nai\d\+\)\|\(spkpc\d\+\)\|\(tc-garyjohn\)' "
   set clipboard=autoselect,exclude:.*
 endif
 
-let g:snipMate = {}
+let g:snipMate = { 'snippet_version' : 1 }
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['ruby'] = 'ruby,ruby-rspec'
 
@@ -307,8 +308,20 @@ inoremap <C-R>] <esc>:Iruby
 nmap Y y$
 vnoremap // y/<c-r>"<cr>
 
+"easymotion----------------------------
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
+
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+nmap s <Plug>(easymotion-s)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+let g:EasyMotion_smartcase = 1
 
 nmap <space> :
 " source .vimrc
@@ -331,7 +344,7 @@ nmap <leader>gc :Gcommit -a<cr>
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gp :Gpull --rebase<cr>
 nmap <leader>gP :Gpush<cr>
-nmap <leader>gl :Glog --pretty=oneline --abbrev-commit --graph --name-status --decorate<cr>
+nmap <leader>gl :Glog --pretty=oneline --graph  --decorate<cr>
 
 "inoremap { {}<left>
 "inoremap ( ()<left>
@@ -366,24 +379,6 @@ map <leader>gie :Gist -e
 nnoremap <silent> <F9> :TagbarToggle<CR>
 nnoremap <leader>t :TagbarToggle<CR>
 
-"easymotion----------------------------
-"<Leader>f{char} to move to {char}
-"map  <Leader>f <Plug>(easymotion-bd-f)
-"nmap <Leader>f <Plug>(easymotion-overwin-f)
-"s{char}{char} to move to {char}{char}
-"nmap s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>F <Plug>(easymotion-bd-jk)
-nmap <Leader>G <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-nmap s <Plug>(easymotion-overwin-f2)
-map <Leader>g <Plug>(easymotion-lineforward)
-map <Leader>f <Plug>(easymotion-j)
-map <Leader>d <Plug>(easymotion-k)
-map <Leader>s <Plug>(easymotion-linebackward)
 
 " 快捷键
 nmap <Up> <c-w>k
@@ -400,15 +395,7 @@ inoremap <c-h> <left>
 inoremap <c-j> <esc>o
 
 
-" These `n` & `N` mappings are options. You do not have to map `n` & `N` to
-" EasyMotion.
-" Without these mappings, `n` & `N` works fine. (These mappings just provide
-" different highlight method and have some other features )
-"map  n <Plug>(easymotion-next)
-"map  N <Plug>(easymotion-prev)
 
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
-"easymotion----------------------------
 
 "set the column color
 fun! SetColorColumn()
