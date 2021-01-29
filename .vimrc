@@ -312,8 +312,6 @@ vnoremap // y/<c-r>"<cr>
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
 
 nmap s <Plug>(easymotion-s)
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -344,6 +342,7 @@ nmap <leader>gc :Gcommit -a<cr>
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gp :Gpull --rebase<cr>
 nmap <leader>gP :Gpush<cr>
+nmap <leader>gg :Git add .<cr>
 nmap <leader>gl :Glog --pretty=oneline --graph  --decorate<cr>
 
 "inoremap { {}<left>
