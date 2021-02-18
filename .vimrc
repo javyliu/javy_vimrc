@@ -102,8 +102,9 @@ Plugin 'chr4/nginx.vim'
 Plugin 'vim-scripts/TailMinusF'
 "for ack search
 Plugin 'mileszs/ack.vim'
-"vim-multiple-cursors
-Plugin 'terryma/vim-multiple-cursors'
+"vim-multiple-cursors deprecated
+"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 "gist-vim
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
@@ -338,11 +339,10 @@ nmap <leader>fw :copen<cr>
 "set current path
 nmap <leader>cp :lcd %:h<cr>
 "vim-fugitive
-nmap <leader>gc :Gcommit -a<cr>
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gp :Gpull --rebase<cr>
-nmap <leader>gP :Gpush<cr>
-nmap <leader>gg :Git add .<cr>
+nmap <leader>gc :Git commit -a<cr>
+nmap <leader>gs :Git status<cr>
+nmap <leader>gp :Git pull --rebase<cr>
+nmap <leader>gP :Git push<cr>
 nmap <leader>gl :Glog --pretty=oneline --graph  --decorate<cr>
 
 "inoremap { {}<left>
