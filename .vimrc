@@ -340,7 +340,7 @@ nmap <leader>fw :copen<cr>
 nmap <leader>cp :lcd %:h<cr>
 "vim-fugitive
 nmap <leader>gc :Git commit -a<cr>
-nmap <leader>gs :Git status<cr>
+nmap <leader>gs :Gstatus<cr>
 nmap <leader>gp :Git pull --rebase<cr>
 nmap <leader>gP :Git push<cr>
 nmap <leader>gl :Glog --pretty=oneline --graph  --decorate<cr>
