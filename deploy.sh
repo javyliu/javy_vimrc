@@ -34,7 +34,7 @@ ln -s ~/software/javy_vimrc/jq ~/bin/
 #chmod 0755 ~/bin/ack
 #cp ./new_bash.sh ~/bin/
 #for vundle
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp .vimrc .gvimrc .pryrc ~/
 vim +PluginInstall +qa
 cp .gitconfig ~/
