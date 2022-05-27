@@ -17,6 +17,6 @@ yum clean all && yum makecache
 
 
 # 重新运行 yum 命令
-sudo yum update -y
+yum update -y
 
 

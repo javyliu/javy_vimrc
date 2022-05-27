@@ -5,7 +5,8 @@ filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#rc()
-let g:vundle_default_git_proto = 'git'
+"不再使用git协议来安装插件
+"let g:vundle_default_git_proto = 'git'
 
 call vundle#begin()
 " let Vundle manage Vundle
