@@ -5,7 +5,7 @@
 
 #change plugin src to git@github.com:xxx
 
-sed -i -E 's/https\:\/\/github.com\//git@github.com:/' ~/.vim/bundle/**/.git/config
+sed -i -E 's/(https|git)\:\/\/github.com\//git@github.com:/' ~/.vim/bundle/**/.git/config
 
 dir=$(ls -d ~/.vim/bundle/*)
 for folder in $dir ; do
