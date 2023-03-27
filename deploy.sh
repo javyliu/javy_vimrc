@@ -60,6 +60,9 @@ sudo yum -y install nodejs
 curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 sudo yum -y install yarn
 
+#install mysql client
+sudo yum install https://repo.mysql.com/yum/mysql-5.5-community/el/6/x86_64/mysql-community-client-5.5.60-2.el6.i686.rpm
+
 #set the yarn registry
 yarn config set registry https://registry.npm.taobao.org
 
