@@ -27,35 +27,35 @@ awk -F'[][]' -v tago=$tago '$2>tago' $log_path/wap.log $log_path/bbs_access.log 
 # TODO 阻止多少时间，需要有一个数量
 # blockips 格式为：deny x.x.x.x; #2343498
 # 井号后面的为险止时的时间戳,如果没有时间戳，那么永久阻止
+tt2 /home/qmliu/.start
+sudo chattr -i $nginx_blocks
+#sudo awk -v file=$nginx_blocks '{print "deny "$2";">file}' $block_file
+
+ori_sign=`md5sum $nginx_blocks`
+
+echo -----删除过期的ip
+jtime=`date -d "$deny_range" "+%s"`
+sudo awk -F'[ ;#]+' -v jt=$jtime -v file=$nginx_blocks '!$3 || $3>jt{print $0 > file}' $nginx_blocks
+
 if [ -s "$block_file" ]; then
   echo "------存在需阻止的ip"
-  tt2 /home/qmliu/.start
-  sudo chattr -i $nginx_blocks
   cat $block_file
-  #sudo awk -v file=$nginx_blocks '{print "deny "$2";">file}' $block_file
-
-  ori_sign=`md5sum $nginx_blocks`
-
-  # 删除过期的行
-  jtime=`date -d "$deny_range" "+%s"`
-  sudo awk -F'[ ;#]+' -v jt=$jtime -v file=$nginx_blocks '!$3 || $3<jt{print $0 > file}' $nginx_blocks
-
   # 直接写原文件,重复的ip不再写入
   sudo awk -F'[ ;#]+' -v jt=$jtime -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$2]){print "deny "$2";#"jt >> file}}' $nginx_blocks $block_file
-
-  cur_sign=`md5sum $nginx_blocks`
-
-  if [[ $ori_sign == $cur_sign ]]; then
-    echo "--没有变化，删除.start"
-    rm /home/qmliu/.start
-  else
-    echo "----md5 比对文件不同"
-    sudo systemctl reload nginx
-    cd $nginx_domains && sudo git commit -am "append blockips"
-    mv /home/qmliu/.start /home/qmliu/.end
-  fi
-
-  sudo chattr +i $nginx_blocks
 else
   echo "------没有需要阻止的ip"
 fi
+
+cur_sign=`md5sum $nginx_blocks`
+
+if [[ $ori_sign == $cur_sign ]]; then
+  echo "--blockips 没有变化，删除.start"
+  rm /home/qmliu/.start
+else
+  echo "----md5 比对文件不同, 重启nginx 并提交变化"
+  sudo systemctl reload nginx
+  cd $nginx_domains && sudo git commit -am "append blockips"
+  mv /home/qmliu/.start /home/qmliu/.end
+fi
+
+sudo chattr +i $nginx_blocks
