@@ -24,7 +24,6 @@ echo $nginx_blocks
 awk -F'[][]' -v tago=$tago '$2>tago' $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $1}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
 
 # 如果有需要阻止的ip, 那么把ip放到nginx配置的blockips文件中
-# TODO 阻止多少时间，需要有一个数量
 # blockips 格式为：deny x.x.x.x; #2343498
 # 井号后面的为险止时的时间戳,如果没有时间戳，那么永久阻止
 tt2 /home/qmliu/.start
@@ -35,13 +34,14 @@ ori_sign=`md5sum $nginx_blocks`
 
 echo -----删除过期的ip
 jtime=`date -d "$deny_range" "+%s"`
-sudo awk -F'[ ;#]+' -v jt=$jtime -v file=$nginx_blocks '!$3 || $3>jt{print $0 > file}' $nginx_blocks
+awk -F'[ ;#]+' -v jt=$jtime '!$3 || $3>jt{print $0}' $nginx_blocks | sudo tee $nginx_blocks
 
 if [ -s "$block_file" ]; then
+  cur_time=`date '+%s'`
   echo "------存在需阻止的ip"
   cat $block_file
   # 直接写原文件,重复的ip不再写入
-  sudo awk -F'[ ;#]+' -v jt=$jtime -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$2]){print "deny "$2";#"jt >> file}}' $nginx_blocks $block_file
+  sudo awk -F'[ ;#]+' -v jt=$cur_time -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$2]){print "deny "$3";#"jt >> file}}' $nginx_blocks $block_file
 else
   echo "------没有需要阻止的ip"
 fi
