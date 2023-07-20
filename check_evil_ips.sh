@@ -36,12 +36,15 @@ echo -----删除过期的ip
 jtime=`date -d "$deny_range" "+%s"`
 awk -F'[ ;#]+' -v jt=$jtime '!$3 || $3>jt{print $0}' $nginx_blocks | sudo tee $nginx_blocks
 
+#echo -----删除重复的ip,暂用
+#awk -F'[ ;#]+' -v jt=$jtime '!a[$2]++' $nginx_blocks | sudo tee $nginx_blocks
+
 if [ -s "$block_file" ]; then
   cur_time=`date '+%s'`
   echo "------存在需阻止的ip"
   cat $block_file
   # 直接写原文件,重复的ip不再写入
-  sudo awk -F'[ ;#]+' -v jt=$cur_time -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$2]){print "deny "$3";#"jt >> file}}' $nginx_blocks $block_file
+  sudo awk -F'[ ;#]+' -v jt=$cur_time -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$3]){print "deny "$3";#"jt >> file}}' $nginx_blocks $block_file
 else
   echo "------没有需要阻止的ip"
 fi
@@ -59,3 +62,20 @@ else
 fi
 
 sudo chattr +i $nginx_blocks
+
+
+# 可以考虑ipset来封ip
+#hash:ip存储类型
+#创建集合：ipset create nginx_blocks hash:ip hashsize 4096 maxelem 1000000 timeout 0
+#编辑/root/iptables.cfg：-A INPUT -m set --match-set nginx_blocks src -p tcp -j DROP
+#向集合中添加IP：ipset add nginx_blocks 1.2.3.4 timeout 300
+#重新指定集合中的IP的timeout：ipset -exist add nginx_blocks 1.2.3.4 timeout 100
+#从集合中移除IP：ipset del nginx_blocks 1.2.3.4
+#ipset规则保存到文件：ipset save nginx_blocks -f /root/nginx_blocks.cfg
+#从文件中导入ipset规则：ipset restore -f /root/nginx_blocks.cfg
+#删除ipset集合（需要先注释掉iptables.cfg中的ipset条目，重新加载iptables）：ipset destroy nginx_blocks
+#查看集合：ipset list
+# 恶意访问，提取特征码
+#k1=`cat evil_content.txt | xargs | sed -E 's@[|/.${()!]@\\\\&@g;s!\s+!|!g'`
+#echo 'ixcvzxcvf' | awk '$0 ~ /'$k1'/{print $0}'
+
