@@ -3,7 +3,7 @@
 #Date & Time: 2023-07-18 17:45:05
 #Description: 通过检查/data3/access_logs/ 中的iphone_community.log 及 web_access.log,挑出状态为404的访问的ip, 超过指定访问量后就把该ip加到 /etc/nginx/domains/blockips 中。
 
-log_path=/data3/access_logs/
+log_path=/data3/access_logs
 # 限定访问次数
 limit_count=100
 # 以当前时间为基准的时间
