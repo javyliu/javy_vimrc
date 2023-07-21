@@ -21,7 +21,9 @@ nginx_blocks=$nginx_domains/blockips
 #nginx_blocks=/home/oswap/blockips
 echo $nginx_blocks
 # 已配置 403及503到单独的日志文件，所以去除403的判断
-awk -F'[][]' -v tago=$tago '$2>tago' $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $1}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
+evil_regexp=`cat evil_content.txt | xargs | sed -E 's@[|/.${()]@\\\\&@g;s!\s+!|!g'`
+awk -F'[][]' -v tago=$tago '$2>tago' $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | \
+  awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $1}$4~/'"$evil_regexp"'/{print FILENAME" "$0 >> "evil_file.log"}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
 
 # 如果有需要阻止的ip, 那么把ip放到nginx配置的blockips文件中
 # blockips 格式为：deny x.x.x.x; #2343498
@@ -39,14 +41,40 @@ awk -F'[ ;#]+' -v jt=$jtime '!$3 || $3>jt{print $0}' $nginx_blocks | sudo tee $n
 #echo -----删除重复的ip,暂用
 #awk -F'[ ;#]+' -v jt=$jtime '!a[$2]++' $nginx_blocks | sudo tee $nginx_blocks
 
+# 可以考虑ipset来封ip
+#hash:ip存储类型
+#创建集合：ipset create nginx_blocks hash:ip hashsize 4096 maxelem 1000000 timeout 0
+#编辑/root/iptables.cfg：-A INPUT -m set --match-set nginx_blocks src -p tcp -j DROP
+#向集合中添加IP：ipset add nginx_blocks 1.2.3.4 timeout 300
+#重新指定集合中的IP的timeout：ipset -exist add nginx_blocks 1.2.3.4 timeout 100
+#从集合中移除IP：ipset del nginx_blocks 1.2.3.4
+#ipset规则保存到文件：ipset save nginx_blocks -f /root/nginx_blocks.cfg
+#从文件中导入ipset规则：ipset restore -f /root/nginx_blocks.cfg
+#删除ipset集合（需要先注释掉iptables.cfg中的ipset条目，重新加载iptables）：ipset destroy nginx_blocks
+#查看集合：ipset list
+# 恶意访问，提取特征码, 超过指定次数的ip直接加入ipset
+#echo ---------evil_ip begin-----------------
+#evil_count=1
+#evil_regexp=`cat evil_content.txt | xargs | sed -E 's@[|/.${()!]@\\\\&@g;s!\s+!|!g'`
+#evil_ipfiles=/home/qmliu/evil_ips.txt
+#echo -------扫描当天访问日志，符合恶意特征码的ip
+#awk 'BEGIN{IGNORECASE=1}$4 ~ /'"$evil_regexp"'/{print $1}' $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | sort | uniq -c | sort -k1,1n | awk -v ct=$evil_count '$1>ct{print $0}' > $evil_ipfiles
+#echo 直接加入ipset
+##awk '{print $0;str="sudo ipset add nginx_blocks "$2; print str; system(str);}' $evil_ipfiles
+#echo ----------evil_ip end----------------
+
+echo -----------nginx_block begin-----------
 if [ -s "$block_file" ]; then
   cur_time=`date '+%s'`
-  echo "------存在需阻止的ip"
+  echo "------需阻止的ip"
   cat $block_file
+  echo "------恶意ip"
+  cat $evil_ipfiles
+  # 如果在ipset中已存在，则不再写入nginx_block
   # 直接写原文件,重复的ip不再写入
+  #sudo awk -F'[ ;#]+' -v jt=$cur_time -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{b[$3]=1}ARGIND==3{if(!a[$3] && !b[$3]){print "deny "$3";#"jt >> file}}' $nginx_blocks $evil_ipfiles $block_file
+  # 暂不加入ipset
   sudo awk -F'[ ;#]+' -v jt=$cur_time -v file=$nginx_blocks 'ARGIND==1{a[$2]=1}ARGIND==2{if(!a[$3]){print "deny "$3";#"jt >> file}}' $nginx_blocks $block_file
-else
-  echo "------没有需要阻止的ip"
 fi
 
 cur_sign=`md5sum $nginx_blocks`
@@ -62,20 +90,3 @@ else
 fi
 
 sudo chattr +i $nginx_blocks
-
-
-# 可以考虑ipset来封ip
-#hash:ip存储类型
-#创建集合：ipset create nginx_blocks hash:ip hashsize 4096 maxelem 1000000 timeout 0
-#编辑/root/iptables.cfg：-A INPUT -m set --match-set nginx_blocks src -p tcp -j DROP
-#向集合中添加IP：ipset add nginx_blocks 1.2.3.4 timeout 300
-#重新指定集合中的IP的timeout：ipset -exist add nginx_blocks 1.2.3.4 timeout 100
-#从集合中移除IP：ipset del nginx_blocks 1.2.3.4
-#ipset规则保存到文件：ipset save nginx_blocks -f /root/nginx_blocks.cfg
-#从文件中导入ipset规则：ipset restore -f /root/nginx_blocks.cfg
-#删除ipset集合（需要先注释掉iptables.cfg中的ipset条目，重新加载iptables）：ipset destroy nginx_blocks
-#查看集合：ipset list
-# 恶意访问，提取特征码
-#k1=`cat evil_content.txt | xargs | sed -E 's@[|/.${()!]@\\\\&@g;s!\s+!|!g'`
-#echo 'ixcvzxcvf' | awk '$0 ~ /'$k1'/{print $0}'
-
