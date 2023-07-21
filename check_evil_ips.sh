@@ -22,8 +22,8 @@ nginx_blocks=$nginx_domains/blockips
 echo $nginx_blocks
 # 已配置 403及503到单独的日志文件，所以去除403的判断
 evil_regexp=`cat evil_content.txt | xargs | sed -E 's@[|/.${()]@\\\\&@g;s!\s+!|!g'`
-awk -F'[][]' -v tago=$tago '$2>tago' $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | \
-  awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $1}$4~/'"$evil_regexp"'/{print FILENAME" "$0 >> "evil_file.log"}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
+awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | \
+  awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$5~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
 
 # 如果有需要阻止的ip, 那么把ip放到nginx配置的blockips文件中
 # blockips 格式为：deny x.x.x.x; #2343498
