@@ -416,4 +416,4 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-colorschema pablo
+colorscheme pablo
