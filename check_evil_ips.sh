@@ -21,7 +21,7 @@ nginx_blocks=$nginx_domains/blockips
 #nginx_blocks=/home/oswap/blockips
 echo $nginx_blocks
 # 已配置 403及503到单独的日志文件，所以去除403的判断
-evil_regexp=$(cat evil_content.txt | xargs | sed -E 's@[|/.${()]@\\\\&@g;s!\s+!|!g')
+evil_regexp=$(cat evil_content.txt | xargs | sed -E 's@[|/.${()\]@\\\\&@g;s!\s+!|!g')
 awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $log_path/inner_ssl_app.log $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$0~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}' | sort | uniq -c | awk -v lc=$limit_count '$1>lc' >$block_file
 
 # 不在使用blocks来阻止ip， 直接写到ipset中，这样就不用重启nginx

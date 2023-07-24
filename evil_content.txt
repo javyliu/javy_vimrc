@@ -18,11 +18,12 @@ ${
 .sql
 .zzz
 /.
+./
 <!--
 @@
 Gemfile
 WEB-INF
-\\\x22
+\\x22
 __debugger__
 allow_url_include
 and%20
