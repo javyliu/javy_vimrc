@@ -13,7 +13,7 @@ deny_range="-1 day"
 
 #tago=`export LC_ALL=en_US.UTF-8;date -d "$limit_time" "+%d/%b/%Y:%T %z"`
 #tago=`date -d "$limit_time" "+%Y/%b/%Y:%T"`
-tago=`date -d "$limit_time" "+%FT%H:%M"`
+tago=$(date -d "$limit_time" "+%FT%H:%M")
 echo ===========time: $tago =limit_count: $limit_count ==limit_time: $limit_time
 block_file=/home/qmliu/blockips
 nginx_domains=/etc/nginx/domains
@@ -21,20 +21,14 @@ nginx_blocks=$nginx_domains/blockips
 #nginx_blocks=/home/oswap/blockips
 echo $nginx_blocks
 # 已配置 403及503到单独的日志文件，所以去除403的判断
-evil_regexp=`cat evil_content.txt | xargs | sed -E 's@[|/.${()]@\\\\&@g;s!\s+!|!g'`
-awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $log_path/inner_ssl_app.log $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | \
-  awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$0~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}'|sort|uniq -c|awk -v lc=$limit_count '$1>lc'>$block_file
-
+evil_regexp=$(cat evil_content.txt | xargs | sed -E 's@[|/.${()]@\\\\&@g;s!\s+!|!g')
+awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $log_path/inner_ssl_app.log $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$0~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}' | sort | uniq -c | awk -v lc=$limit_count '$1>lc' >$block_file
 
 # 不在使用blocks来阻止ip， 直接写到ipset中，这样就不用重启nginx
 if [ -s "$block_file" ]; then
   echo "------阻止以下ip 一天： "
   awk '{print $0;str="sudo ipset add nginx_blocks "$2" timeout 86400"; print str; system(str);}' $block_file
 fi
-
-
-
-
 
 # # 如果有需要阻止的ip, 那么把ip放到nginx配置的blockips文件中
 # # blockips 格式为：deny x.x.x.x; #2343498
@@ -51,10 +45,6 @@ fi
 
 # #echo -----删除重复的ip,暂用
 # #awk -F'[ ;#]+' -v jt=$jtime '!a[$2]++' $nginx_blocks | sudo tee $nginx_blocks
-
-
-
-
 
 # echo -----------nginx_block begin-----------
 # if [ -s "$block_file" ]; then
@@ -83,7 +73,6 @@ fi
 # fi
 
 # sudo chattr +i $nginx_blocks
-
 
 # 可以考虑ipset来封ip
 #hash:ip存储类型
