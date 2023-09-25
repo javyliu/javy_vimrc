@@ -2,12 +2,13 @@
 # Author: javy liu
 #Date & Time: 2023-07-18 17:45:05
 #Description: 通过检查/data3/access_logs/ 中的iphone_community.log 及 web_access.log,挑出状态为404的访问的ip, 超过指定访问量后就把该ip加到 /etc/nginx/domains/blockips 中。
+# 因为是亚意访问 ，直接加入到永久阻止中
 
 log_path=/data3/access_logs
-# 限定访问次数
+# 限定访问次数,超过50直接阻止
 limit_count=100
 # 以当前时间为基准的时间
-limit_time="-10 minutes"
+limit_time="-11 minutes"
 # 阻止时间,当前为一天
 deny_range="-1 day"
 
@@ -17,18 +18,35 @@ tago=$(date -d "$limit_time" "+%FT%H:%M")
 echo ===========time: $tago =limit_count: $limit_count ==limit_time: $limit_time
 block_file=/home/qmliu/blockips
 nginx_domains=/etc/nginx/domains
-nginx_blocks=$nginx_domains/blockips
+#nginx_blocks=$nginx_domains/blockips
 #nginx_blocks=/home/oswap/blockips
-echo $nginx_blocks
-# 已配置 403及503到单独的日志文件，所以去除403的判断
+echo "block_file=$blcok_file"
+# 获取evil_content.txt中的恶意代码并生成正则字符串，并对一些字符进行转义
 evil_regexp=$(cat evil_content.txt | xargs | sed -E 's@[|/.${()\]@\\&@g;s!\s+!|!g')
-awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $log_path/inner_ssl_app.log $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log | awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$0~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}' | sort | uniq -c | awk -v lc=$limit_count '$1>lc' >$block_file
+# 已配置 403及503到单独的日志文件，所以去除403的判断
+monitor_files="$log_path/inner_ssl_app.log $log_path/wap.log $log_path/bbs_access.log $log_path/admin_access.log $log_path/iphone_community.log $log_path/web_access.log"
+
+# 超过访问该频次且非指定搜索引擎的ip将会被记录到 blockips 文件中，恶意正则过滤的日志会被存在 evil_file.log 中
+echo "监控以下文件 $monitor_files"
+awk -F'[][]' -v tago=$tago '$2>tago{print FILENAME" "$0}' $monitor_files \
+| awk 'BEGIN{IGNORECASE=1}!/google|yahoo|baidu|soguo|360/{print $2}$0~/'"$evil_regexp"'/{print $0 >> "evil_file.log"}'\
+| sort | uniq -c | awk -v lc=$limit_count '$1>lc' > $block_file
+
+#echo 最近10分钟内最后100行去除指定搜索引擎访问日志
+#tail -n100 evil_file.log
+echo 恶意ip
+cat $block_file
 
 # 不在使用blocks来阻止ip， 直接写到ipset中，这样就不用重启nginx
 if [ -s "$block_file" ]; then
   echo "------阻止以下ip 一天： "
   awk '{print $0;str="sudo ipset add nginx_blocks "$2" timeout 86400"; print str; system(str);}' $block_file
 fi
+
+#if [[ -s "$block_file" ]]; then
+#  echo "-----如果不存在阻止以下ip 一天，如果存在则永久阴止并保存： "
+#  awk '{print $0;str="sudo ipset test nginx_blocks "$2"; if [ $? -eq 0 ];then sudo ipset -exist add nginx_blocks "$2" timeout 0;sudo ipset save nginx_blocks -f /root/nginx_blocks.cfg;else sudo ipset add nginx_blocks "$2" timeout 86400; fi"; print str; system(str);}' $block_file
+#fi
 
 # # 如果有需要阻止的ip, 那么把ip放到nginx配置的blockips文件中
 # # blockips 格式为：deny x.x.x.x; #2343498
