@@ -65,7 +65,8 @@ sudo yum -y install yarn
 sudo yum install https://repo.mysql.com/yum/mysql-5.5-community/el/6/x86_64/mysql-community-client-5.5.60-2.el6.i686.rpm
 
 #set the yarn registry
-yarn config set registry https://registry.npm.taobao.org
+#yarn config set registry https://registry.npm.taobao.org
+npm config set registry  https://registry.npmmirror.com
 
 #install some tool
 sudo yum install  -y tree wget bash-completion net-tools tcpdump ab expect

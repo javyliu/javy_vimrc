@@ -20,3 +20,8 @@ Install will overwrite your .vimrc, .gvimrc file and .vim folder, be sure **back
 
 Done.
 
+# Install ack
+```
+curl https://beyondgrep.com/ack-v3.7.0 > ~/bin/ack && chmod 0755 ~/bin/ack
+```
+
