@@ -18,7 +18,7 @@ fi
 
 if ! grep "^#!" $newfile &>/dev/null; then
   cat >> $newfile << EOF
-#!/usr/bin/env sh
+#!/bin/bash
 # Author: javy liu
 #Date & Time: `date +"%F %T"`
 #Description: $2
