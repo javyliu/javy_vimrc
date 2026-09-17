@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Author: javy liu
+#Date & Time: 2024-09-05 17:02:52
+#Description: 初始化一个rocky容器并安装相应软件, 有很多软件没有安装，可能得自己做一个image才可以
+
+#docker run -it --name lrocky --network host -v /Users/qmliu/javy_vimrc:/javy_vimrc rockylinux:9.2
+
+export https_proxy='socks5://192.168.30.39:18205'
+dnf -y update
+dnf install -y vim openssh-clients iproute iputils procps
+unset https_proxy
+
+
+
