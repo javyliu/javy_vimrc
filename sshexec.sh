@@ -5,19 +5,23 @@
 
 server_name=$1
 cmd=${@:2}
-if command -v gsed &>/dev/null;then
+os=$(uname -s)
+if [[ "$os" == "Darwin" ]];then
   SED="gsed"
+  bash_file="$HOME/.bash_profile"
+  ops="-o WarnWeakCrypto=no"
 else
   SED="sed"
+  bash_file="$HOME/.bashrc"
+  ops=""
 fi
-
-con=`$SED -nE "/\b$server_name\b/p" ~/.bash_profile|sed -E "s/.*'(.*)'.*/\1/"`
+con=`$SED -nE "/\b$server_name\b/p" $bash_file | $SED -E "s/.*'(.*)'.*/\1/"`
 
 if [ -z "$con" ]; then
   echo "no alias"
 else
   echo $con
-  $con -o WarnWeakCrypto=no -T <<-EOF
+  $con $ops -T <<-EOF
     $cmd
 EOF
 fi
